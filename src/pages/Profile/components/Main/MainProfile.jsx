@@ -27,7 +27,7 @@ const MainProfile = () => {
       {posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
-      {posts.length ? <p className={s.paragraph}>To delete the post(s), go to <Link to="/settings">Settings</Link>.</p> : ''}
+      {posts.length > 0 && <p className={s.paragraph}>To delete the post(s), go to <Link to="/settings">Settings</Link>.</p>}
      
     </div>
   )

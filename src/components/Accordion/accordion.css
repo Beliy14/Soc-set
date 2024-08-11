@@ -1,8 +1,6 @@
 .accordion {
     width: 100%;
     border: 1px solid transparent;
-    position: relative;
-    z-index: 1;
   }
   
   .accordion-title {

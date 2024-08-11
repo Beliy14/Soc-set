@@ -38,6 +38,16 @@
     background-color: #4b637c;
   }
 
+  .dateContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #5e7083;
+
+    & p {
+        white-space: nowrap
+    }
+  }
   
 
 .postContainer {
@@ -58,7 +68,10 @@
 }
 
 .setting {
+    display: flex;
+    flex-direction: column;
     position: absolute;
+    align-items: center;
     top: 0;
     padding: 0 10px;
     left: calc(100%); 
@@ -67,7 +80,7 @@
     border-radius:  0 5px 5px 5px;
     padding: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 125px;
+    width: 150px;
 }
 
 .setting span {
@@ -78,7 +91,7 @@
     background-color: #ff4d4d;
     color: white;
     border: none;
-    padding: 2px 4px 0px;
+    padding: 2px 18px 0px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 3px;
