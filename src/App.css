@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+.app-wrapper {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  height: 98vh;
+  width: 80vw;
+  grid-gap: 5px;
+}
+.header {
+  grid-area: header;
+  background: #b1fdf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 0 0 ;
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  background: #cffcff;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  justify-content: space-between;
+  border-radius: 0 0 0 10px ;
+}
+
+.main {
+  grid-area: main;
+  background: #93afc0;
+  border-radius: 0 0 10px 0;
+}
+
+.link {
+  text-decoration: none;
+  cursor: default;
+  color: rgb(42, 55, 63)
+}

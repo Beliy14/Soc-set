@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+
+.inputData {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s ease;
+  }
+  
+  .inputData:focus {
+    border-color: #415870;
+  }
+  
+  .saveData {
+    width: 50%;
+    padding: 10px 10px 6px;
+    margin-bottom: 10px;
+    background-color: #6c86a1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .saveData:hover {
+    background-color: #4b637c;
+  }
+
+  
+
+.postContainer {
+    border-radius: 5px;
+    background-color: #99b6d6;
+    padding: 10px 25px 10px 15px;
+    position: relative;
+}
+
+.postContainer p {
+    font-size: 18px;
+}
+
+.more {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.setting {
+    position: absolute;
+    top: 0;
+    padding: 0 10px;
+    left: calc(100%); 
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius:  0 5px 5px 5px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 125px;
+}
+
+.setting span {
+    color: rgb(88, 88, 88);
+}
+
+.setting button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 2px 4px 0px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.2s ease;
+}
+
+.setting button:hover {
+    background-color: #cc0000;
+}

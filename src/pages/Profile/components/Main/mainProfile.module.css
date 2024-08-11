@@ -1,0 +1,111 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 10px 0;
+  border-bottom: 1px solid #3a487038;
+  padding-bottom: 10px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  resize: vertical;
+  outline: none;
+  min-height: 35px; 
+  background-color: #ffffffcb;
+  scrollbar-width: thin;
+  scrollbar-color: #bebebe #f1f1f1;
+  
+}
+
+.inputField::-webkit-scrollbar {
+    width: 12px;
+  border-radius: 10px;
+
+}
+
+.inputField::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.inputField::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.inputField::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.postContainer {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 10px 24px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.postText {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.button {
+  padding: 10px 20px 6px;
+  background-color: #7faddf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.button:hover {
+  background-color: #4d9cf1;
+}
+
+.likeDateContainer {
+  position: absolute;
+  bottom: -2px;
+  right: 2px;
+  user-select: none;
+  display: flex; justify-content: space-between;
+  width: 98%;
+}
+
+.datePost {
+  padding-top: 5px;
+  color: #575757;
+}
+
+.like {
+  cursor: pointer;
+}
+
+.paragraph {
+  color: #5f5f5f;
+  margin-top: 20px;
+
+  & a {
+  color: #2f3944;
+    text-decoration: none;
+  }
+}
