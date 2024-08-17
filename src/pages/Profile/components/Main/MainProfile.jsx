@@ -3,7 +3,6 @@ import s from "./mainProfile.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { addPost } from "../../../../store/slices/postSlice"
 import Post from "../Post/Post"
-import { Link } from "react-router-dom"
 
 const MainProfile = () => {
   const dispatch = useDispatch()
@@ -27,7 +26,6 @@ const MainProfile = () => {
       {posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
-      {posts.length > 0 && <p className={s.paragraph}>To delete the post(s), go to <Link to="/settings">Settings</Link>.</p>}
      
     </div>
   )

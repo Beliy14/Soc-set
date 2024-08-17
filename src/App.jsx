@@ -8,8 +8,7 @@ import News from "./pages/News/News"
 import Header from "./components/Header/Header"
 import Settings from "./pages/Settings/Settings"
 import Main from "./pages/Main/Main"
-
-
+import Users from "./pages/Users/Users"
 
 function App() {
   return (
@@ -26,8 +25,9 @@ function App() {
         <main className="main">
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/messages/*" element={<Messages/>} />
+            <Route path="/profile/*" element={<Profile />} />
+            <Route path="/messages/*" element={<Messages />} />
+            <Route path="/users" element={<Users />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

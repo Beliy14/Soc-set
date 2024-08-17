@@ -19,3 +19,9 @@
     color: #666;
     line-height: 1.6;
 }
+
+.span {
+    color: #474747;
+    font-weight: normal;
+    font-size: 2rem;
+}

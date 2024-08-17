@@ -21,12 +21,9 @@ const postSlice = createSlice({
             if (post) {
                 post.likes = post.likes === 0 ? 1 : 0;
             }
-        },
-        deletePost: (state, action) => {
-            state.posts = state.posts.filter(post => post.id !== action.payload)
         }
     }
 })
 
-export const { addPost, addLike, deletePost } = postSlice.actions;
+export const { addPost, addLike } = postSlice.actions;
 export default postSlice.reducer;

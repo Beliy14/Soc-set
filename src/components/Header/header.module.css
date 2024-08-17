@@ -1,3 +1,19 @@
 .logo {
     width: 200px;
 }
+
+.container {
+    position: relative;
+}
+
+.span {
+    color: #4d666d;
+    font-weight: normal;
+    font-size: 2rem;
+    position: absolute;
+    z-index: 1;
+    top: 52.5%;
+    left: 155px;
+
+    transform: translateY(-53%)
+}
