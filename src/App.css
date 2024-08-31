@@ -24,6 +24,7 @@
   width: 80vw;
   grid-gap: 5px;
 }
+
 .header {
   grid-area: header;
   background: #b1fdf7;
@@ -31,6 +32,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px 10px 0 0 ;
+  position: relative;
 }
 
 .nav {

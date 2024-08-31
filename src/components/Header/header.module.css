@@ -1,19 +1,45 @@
 .logo {
-    width: 200px;
+  width: 200px;
 }
 
 .container {
-    position: relative;
+  position: relative;
 }
 
 .span {
-    color: #4d666d;
-    font-weight: normal;
-    font-size: 2rem;
-    position: absolute;
-    z-index: 1;
-    top: 52.5%;
-    left: 155px;
+  color: #4d666d;
+  font-weight: normal;
+  font-size: 2rem;
+  position: absolute;
+  z-index: 1;
+  top: 52.5%;
+  left: 155px;
 
-    transform: translateY(-53%)
+  transform: translateY(-53%);
 }
+
+.loginBlock {
+  position: absolute;
+  right: 20px;
+}
+
+.log {
+    padding: 5px 8px 4px;
+    border: 1px solid #7d87a5;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    color: #394057;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+    background-color: #a8d1db;
+    margin-left: 10px;
+    cursor: default;
+
+
+    &:hover {
+      background-color: #475a72;
+      color: #cffcff;
+    }
+  }

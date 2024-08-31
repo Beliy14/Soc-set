@@ -1,0 +1,21 @@
+.status {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.statusNull {
+    color: rgb(70, 70, 70)
+}
+
+.statusInput {
+    padding: 4px 6px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.statusInput:focus {
+    border-color: #9ab8d8;
+}

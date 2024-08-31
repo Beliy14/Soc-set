@@ -2,6 +2,8 @@ import React from "react"
 import s from './messages.module.css'
 import MessageLink from "./components/MessageLink"
 import Message from "./components/Message"
+import Redirect from "../../hoc/Redirect"
+
 
 const Messages = () => {
 
@@ -18,7 +20,7 @@ const Messages = () => {
   ]
 
   return (
-    <div>
+    <Redirect>
       <div className={s.messages}>
         <div className={s.items}>
           {$items.map(item => 
@@ -31,7 +33,7 @@ const Messages = () => {
           )}
         </div>
       </div>
-    </div>
+    </Redirect>
   )
 }
 

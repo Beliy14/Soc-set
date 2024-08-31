@@ -9,6 +9,7 @@ import Header from "./components/Header/Header"
 import Settings from "./pages/Settings/Settings"
 import Main from "./pages/Main/Main"
 import Users from "./pages/Users/Users"
+import Login from "./pages/Login/Login"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <main className="main">
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/profile/*" element={<Profile />} />
             <Route path="/messages/*" element={<Messages />} />
             <Route path="/users" element={<Users />} />

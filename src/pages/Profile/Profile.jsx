@@ -1,30 +1,31 @@
-import React from "react"
+import React, { useEffect } from "react"
 import HeaderProfile from "./components/Header/HeaderProfile"
 import MainProfile from "./components/Main/MainProfile"
 import { useGetProfileQuery } from "../../store/queryApi/profileApi"
 import Loader from "../../components/Loader/Loader"
-import ErrorBlock from "../../components/ErrorBlock/ErrorBlock"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setUserProfile } from "../../store/slices/profileSlice"
+import Redirect from "../../hoc/Redirect"
 
 const Profile = () => {
-  const profile = useSelector((state) => state.profile.profile)
+  const dispatch = useDispatch()
+  const profileId = useSelector((state) => state.profile.profileId)
+  const { data, isLoading } = useGetProfileQuery(profileId)
+  const { id } = useSelector((state) => state.auth)
+  
 
-  console.log(profile)
-
-  const { data, isLoading, error } = useGetProfileQuery(profile)
-
+  useEffect(() => {
+    if (!profileId) {
+      dispatch(setUserProfile(id))
+    }
+  }, [dispatch, id, profileId])
+ 
   return (
-    <>
+    <Redirect >
       {isLoading && <Loader />}
-      {error ? (
-        <ErrorBlock message={error.error || "Error"} />
-      ) : (
-        <>
-          <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} />
-          <MainProfile />
-        </>
-      )}
-    </>
+      <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} userId={data?.userId} />
+      <MainProfile />
+    </Redirect>
   )
 }
 
