@@ -6,7 +6,7 @@ import { useFollowUserMutation, useUnFollowUserMutation } from "../../../store/q
 import { setUserProfile } from "../../../store/slices/profileSlice"
 import { useDispatch, useSelector } from "react-redux"
 
-const User = () => {
+const User = React.memo(() => {
   const { users, isFollowingProgress } = useSelector((state) => state.users)
   const { isAuth, id } = useSelector((state) => state.auth)
 
@@ -63,6 +63,6 @@ const User = () => {
       )}
     </Link>
   ))
-}
+})
 
 export default User

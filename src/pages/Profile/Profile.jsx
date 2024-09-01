@@ -13,7 +13,7 @@ const Profile = () => {
   const { data, isLoading } = useGetProfileQuery(profileId)
   const { id } = useSelector((state) => state.auth)
   
-
+  
   useEffect(() => {
     if (!profileId) {
       dispatch(setUserProfile(id))

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setCurrentPage } from "../../../store/slices/usersSlice"
 import { useLocation } from "react-router-dom"
 
-const PaginationBlock = ({ setPagePagination }) => {
+const PaginationBlock = React.memo(({ setPagePagination }) => {
   const { currentPage, totalUsersCount } = useSelector((state) => state.users)
 
   const [isNextPage, setIsNextPage] = useState(true)
@@ -85,6 +85,6 @@ const PaginationBlock = ({ setPagePagination }) => {
       )}
     </div>
   )
-}
+})
 
 export default PaginationBlock

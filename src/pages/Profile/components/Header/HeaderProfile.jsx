@@ -3,7 +3,7 @@ import s from "./headerProfile.module.css"
 import ProfileStatus from "../ProfileStatus/ProfileStatus"
 import { useSelector } from "react-redux"
 
-const HeaderProfile = ({ avatar, name, aboutMe, userId }) => {
+const HeaderProfile = React.memo(({ avatar, name, aboutMe, userId }) => {
   const { id } = useSelector((state) => state.auth)
 
   return (
@@ -15,6 +15,11 @@ const HeaderProfile = ({ avatar, name, aboutMe, userId }) => {
       </section>
     </header>
   )
-}
+})
 
 export default HeaderProfile
+
+
+
+
+// может нужно убрать memo!?
