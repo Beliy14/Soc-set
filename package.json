@@ -1,8 +1,8 @@
 {
+  "homepage": "https://github.com/Beliy14/Soc-Sec-online.git",
   "name": "soc-set",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Beliy14/Soc-Sec-online.git",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",

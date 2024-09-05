@@ -9,7 +9,10 @@
 /coverage
 
 # prod
-/build
+# /build
+
+/public
+/src
 
 
 # misc
