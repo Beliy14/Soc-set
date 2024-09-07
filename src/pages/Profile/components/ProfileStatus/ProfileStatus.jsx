@@ -5,7 +5,6 @@ import { useUpdateProfileStatusMutation, useGetProfileStatusQuery } from "../../
 const ProfileStatus = ({ id }) => {
   const { data: status, refetch } = useGetProfileStatusQuery(id)
   const [updateStatus] = useUpdateProfileStatusMutation()
-
   const [editMode, setEditMode] = useState(false)
   const [newStatus, setNewStatus] = useState(status)
 
@@ -24,7 +23,7 @@ const ProfileStatus = ({ id }) => {
         }
       }
     } catch (err) {
-      console.error('Error from try-catch:', err)
+      console.error(err)
     } finally {
       setEditMode(!editMode)
     }

@@ -8,8 +8,8 @@ const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    setUserProfile: (state, acion) => {
-      state.profileId = acion.payload
+    setUserProfile: (state, action) => {
+      state.profileId = action.payload
     },
   },
 })

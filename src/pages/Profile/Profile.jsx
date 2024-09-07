@@ -6,24 +6,32 @@ import Loader from "../../components/Loader/Loader"
 import { useDispatch, useSelector } from "react-redux"
 import { setUserProfile } from "../../store/slices/profileSlice"
 import Redirect from "../../hoc/Redirect"
+import { useLocation, useParams } from "react-router-dom"
 
 const Profile = () => {
   const dispatch = useDispatch()
   const profileId = useSelector((state) => state.profile.profileId)
-  const { data, isLoading } = useGetProfileQuery(profileId)
+  const { data, isLoading, refetch } = useGetProfileQuery(profileId)
   const { id } = useSelector((state) => state.auth)
-  
-  
+
+  const location = useLocation()
+  const params = useParams()
+
+
   useEffect(() => {
-    if (!profileId) {
+    if (!location.pathname.includes(profileId)) {
       dispatch(setUserProfile(id))
     }
-  }, [dispatch, id, profileId])
- 
+    if (params['*']) {
+      dispatch(setUserProfile(params['*']))
+    }
+    
+  }, [dispatch, id, profileId, location.pathname, params])
+
   return (
-    <Redirect >
+    <Redirect>
       {isLoading && <Loader />}
-      <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} userId={data?.userId} />
+      <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} userId={data?.userId} refetch={refetch} />
       <MainProfile />
     </Redirect>
   )

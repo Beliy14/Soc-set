@@ -7,7 +7,7 @@ export const profileApi = createApi({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("API-KEY", API_KEY)
-      headers.set('Authorization', `Bearer ${TOKEN}`)
+      headers.set("Authorization", `Bearer ${TOKEN}`)
       return headers
     },
     fetchFn: (input, init) => {
@@ -34,7 +34,20 @@ export const profileApi = createApi({
         body: { status },
       }),
     }),
+
+    updateProfilePhoto: builder.mutation({
+      query: (photo) => {
+        const formData = new FormData();
+        formData.append("image", photo);
+        return {
+          url: "/profile/photo",
+          method: "PUT",
+          body: formData,
+        };
+      },
+    }),
+    
   }),
 })
 
-export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation } = profileApi
+export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation, useUpdateProfilePhotoMutation } = profileApi
