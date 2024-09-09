@@ -31,7 +31,7 @@ const Profile = () => {
   return (
     <Redirect>
       {isLoading && <Loader />}
-      <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} userId={data?.userId} refetch={refetch} />
+      <HeaderProfile avatar={data?.photos?.large} name={data?.fullName} aboutMe={data?.aboutMe} refetch={refetch} owner={id === data?.userId} />
       <MainProfile />
     </Redirect>
   )
