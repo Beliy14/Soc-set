@@ -4,6 +4,7 @@
   background-color: #4a63868c;
   border-radius: 0 0 5px 5px;
   position: relative;
+  padding: 5px 20px 5px 0;
 
   & h2 {
     margin-bottom: 3px;
@@ -15,5 +16,24 @@
   width: 6rem;
   height: 6rem;
   margin: 20px;
+}
+
+.infoBlock {
+  background-color: #dbdbdb;
+  color: #4b4b4b;
+  margin-top: 5px;
+  padding: 2px 10px;
+  border-radius: 5px;
+  display: flex;
+  width: 50px;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    width: 70px;
+    gap: 4px;
+  }
 }
 

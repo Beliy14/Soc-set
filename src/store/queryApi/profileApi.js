@@ -37,17 +37,24 @@ export const profileApi = createApi({
 
     updateProfilePhoto: builder.mutation({
       query: (photo) => {
-        const formData = new FormData();
-        formData.append("image", photo);
+        const formData = new FormData()
+        formData.append("image", photo)
         return {
           url: "/profile/photo",
           method: "PUT",
           body: formData,
-        };
+        }
       },
     }),
-    
+
+    updateProfileInfo: builder.mutation({
+      query: (profile) => ({
+        url: `/profile`,
+        method: "PUT",
+        body: profile,
+      }),
+    }),
   }),
 })
 
-export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation, useUpdateProfilePhotoMutation } = profileApi
+export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation, useUpdateProfilePhotoMutation, useUpdateProfileInfoMutation } = profileApi

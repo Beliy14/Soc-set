@@ -1,0 +1,63 @@
+.block {
+  background-color: #dbdbdb;
+  color: #4b4b4b;
+  margin-top: 5px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3px;
+  transition: 0.1s ease;
+  max-height: 80px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+  scrollbar-width: thin;
+  scrollbar-color: #949494 #dbdbdb;
+}
+
+.infoBlock {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(97, 118, 179);
+}
+
+.centerBlock {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editBtn {
+  cursor: pointer;
+  padding: 4px 8px 2px;
+  font-size: 14px;
+}
+
+.input {
+  outline: none;
+  padding: 2px 4px 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: 0.2s ease;
+
+  &:focus {
+    border-color: #797979;
+  }
+}
+
+.error {
+  border: 1px solid rgb(255, 56, 56);
+}
+
+.errorMessage {
+  color: rgb(255, 56, 56);
+}

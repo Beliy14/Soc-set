@@ -4,21 +4,41 @@ import ProfileStatus from "../ProfileStatus/ProfileStatus"
 import { useSelector } from "react-redux"
 import Backdrop from "../Backdrop/Backdrop"
 import ProfilePhoto from "../ProfilePhoto/ProfilePhoto"
+import ProfileInfo from "../ProfileInfo/ProfileInfo"
+import { MdKeyboardDoubleArrowRight } from "react-icons/md"
+import { IconContext } from "react-icons"
 
-const HeaderProfile = React.memo(({ avatar, name, aboutMe, refetch, owner }) => {
+const HeaderProfile = React.memo(({ props, refetch, owner }) => {
   const { id } = useSelector((state) => state.auth)
 
   const [isBackdrop, setIsBackdrop] = useState(false)
+  const [isOpenJobBlock, setIsOpenJobBlock] = useState(false)
+
+  const onInfoBlock = (e) => {
+    e.stopPropagation()
+    setIsOpenJobBlock(true)
+  }
 
   return (
     <>
-      {isBackdrop && avatar && <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={avatar} name={name} refetch={refetch} />}
+      {isBackdrop && props?.photos?.large && <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={props?.photos?.large} name={props?.fullName} refetch={refetch} />}
 
-      <header className={s.header}>
-        <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={avatar} name={name} />
+      <header className={s.header} onClick={() => setIsOpenJobBlock(false)}>
+        <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={props?.photos?.large} name={props?.fullName} />
         <section>
-          <h2>{name}</h2>
-          {owner ? <ProfileStatus id={id} /> : <p>{aboutMe}</p>}
+          <h2>{props?.fullName}</h2>
+          {owner ? <ProfileStatus id={id} /> : <p>{props?.aboutMe}</p>}
+
+          {isOpenJobBlock ? (
+            <ProfileInfo refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
+          ) : (
+            <div className={s.infoBlock} onClick={onInfoBlock}>
+              <p>Info...</p>
+              <IconContext.Provider value={{ size: "20px", color: "#636363" }}>
+                <MdKeyboardDoubleArrowRight />
+              </IconContext.Provider>
+            </div>
+          )}
         </section>
       </header>
     </>

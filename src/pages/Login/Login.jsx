@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import s from "./login.module.css"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import loginFormSchema from "./FormValidation/LoginFormSchema"
+import loginFormSchema from "./FormValidation/loginFormSchema"
 import { useLogInMutation } from "../../store/queryApi/authApi"
 import { useDispatch, useSelector } from "react-redux"
 import { setAuthUserData } from "../../store/slices/authSlice"
