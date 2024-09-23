@@ -7,7 +7,7 @@ export const usersApi = createApi({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("API-KEY", API_KEY)
-      headers.set('Authorization', `Bearer ${TOKEN}`)
+      headers.set("Authorization", `Bearer ${TOKEN}`)
       return headers
     },
     fetchFn: (input, init) => {
@@ -16,9 +16,16 @@ export const usersApi = createApi({
   }),
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: (page) => ({
-        url: `/users?page=${page}&count=5`,
-      }),
+      query: ({ page, term, friend }) => {
+        let url = `/users?page=${page}&count=4`
+        if (term) {
+          url += `&term=${term}`
+        }
+        if (friend) {
+          url += `&friend=${friend}`
+        }
+        return { url }
+      },
     }),
 
     followUser: builder.mutation({

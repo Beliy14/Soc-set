@@ -4,7 +4,9 @@ const initialState = {
   users: [],
   currentPage: 1,
   totalUsersCount: 1,
-  isFollowingProgress: []
+  isFollowingProgress: [],
+  term: "",
+  friend: null,
 };
 
 const usersSlice = createSlice({
@@ -39,9 +41,17 @@ const usersSlice = createSlice({
       } else {
         state.isFollowingProgress = state.isFollowingProgress.filter(id => id !== userId);
       }
-    }
+    },
+
+    setTerm: (state, action) => { 
+      state.term = action.payload;
+    },
+
+    setFriendSelect: (state, action) => { 
+      state.friend = action.payload;
+    },
   },
 });
 
-export const { toggleFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setIsFollowingProgress } = usersSlice.actions;
+export const { toggleFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setIsFollowingProgress, setTerm, setFriendSelect } = usersSlice.actions;
 export default usersSlice.reducer;

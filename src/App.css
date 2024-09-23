@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Yanone Kaffeesatz", sans-serif;
-  
 }
 
 .app {
@@ -21,7 +20,7 @@
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   height: 98vh;
-  width: 80vw;
+  min-width: 80vw;
   grid-gap: 5px;
 }
 

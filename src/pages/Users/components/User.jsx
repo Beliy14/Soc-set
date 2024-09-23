@@ -41,6 +41,8 @@ const User = React.memo(() => {
     dispatch(setUserProfile(id))
   }
 
+  if (!users?.length) return <h3 className={s.noUsersFound}>No users found</h3>
+  
   return users?.map((user) => (
     <Link to={`/profile/${user.id}`} onClick={() => onUserDate(user.id)} key={user.id} className={`${s.user} link`}>
       <div className={s.userInfo}>
