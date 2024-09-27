@@ -6,26 +6,52 @@ import Loader from "../../../../components/Loader/Loader"
 import ErrorBlock from "../../../../components/ErrorBlock/ErrorBlock"
 import { setTotalUsersCount, setUsers, setTerm, setCurrentPage, setFriendSelect } from "../../../../store/slices/usersSlice"
 import useDebounce from "../../../../hooks/useDebounce"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const UsersSearch = ({ pagePagination, setPagePagination }) => {
-  const [searchTerm, setSearchTerm] = useState("")
-  const debouncedSearchTerm = useDebounce(searchTerm, 500)
+  const { term, friend } = useSelector((state) => state.users)
+
+  const [searchTerm, setSearchTerm] = useState(term)
+  const debouncedSearchTerm = useDebounce(searchTerm, 200)
 
   const dispatch = useDispatch()
-  const {term, friend} = useSelector((state) => state.users)
-  const { data: usersQuery, isLoading, error, refetch } = useGetUsersQuery({ page: pagePagination, term, friend })
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const parseQueryParams = (search) => {
+    const params = new URLSearchParams(search)
+    const queryParams = {}
+
+    for (const [key, value] of params.entries()) {
+      queryParams[key] = value
+    }
+
+    return queryParams
+  }
+  const queryParams = parseQueryParams(location.search)
+
+  useEffect(() => {
+    if (queryParams.term) {
+      setSearchTerm(queryParams.term)
+    }
+  }, [queryParams.term])
+
+  const { data: usersQuery, isLoading, error, refetch } = useGetUsersQuery({ page: pagePagination, term: debouncedSearchTerm, friend })
+
+  useEffect(() => {
+    navigate(`/users?term=${debouncedSearchTerm}`)
+  }, [debouncedSearchTerm, friend, navigate])
 
   const handleTerm = useCallback(() => {
     setPagePagination(1)
     dispatch(setCurrentPage(1))
-    dispatch(setTerm(searchTerm))
-  }, [dispatch, searchTerm, setPagePagination])
+    dispatch(setTerm(debouncedSearchTerm))
+  }, [dispatch, debouncedSearchTerm, setPagePagination])
 
   const handleFriend = (e) => {
-    
     setPagePagination(1)
     dispatch(setCurrentPage(1))
-    dispatch(setFriendSelect(e.target.value === 'null' ? null : e.target.value))
+    dispatch(setFriendSelect(e.target.value === "null" ? null : e.target.value))
   }
 
   useEffect(() => {
@@ -39,9 +65,11 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
   }, [friend, refetch])
 
   useEffect(() => {
-    dispatch(setUsers(usersQuery?.items))
-    dispatch(setTotalUsersCount(usersQuery?.totalCount))
-  }, [dispatch, usersQuery, term])
+    if (usersQuery) {
+      dispatch(setUsers(usersQuery.items))
+      dispatch(setTotalUsersCount(usersQuery.totalCount))
+    }
+  }, [dispatch, usersQuery, debouncedSearchTerm])
 
   return (
     <div className={s.block}>
