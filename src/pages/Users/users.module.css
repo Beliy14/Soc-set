@@ -70,6 +70,7 @@
   margin: 0 0 5px;
   color: #666;
   text-wrap: wrap;
+  word-break: break-word;
 }
 
 .followContainer {

@@ -6,7 +6,6 @@ const NavbarBtn = ({ to, title, styleClass }) => {
 
     const btnClass = location.pathname.includes(to) ? `${styleClass.link} ${styleClass.active}` : styleClass.link;
 
-
     return (
         <Link className={btnClass} to={to}>{title}</Link>
     );

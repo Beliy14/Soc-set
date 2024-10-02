@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 const UsersSearch = ({ pagePagination, setPagePagination }) => {
   const { term, friend } = useSelector((state) => state.users)
+  const { isAuth } = useSelector((state) => state.auth)
 
   const [searchTerm, setSearchTerm] = useState(term)
   const debouncedSearchTerm = useDebounce(searchTerm, 200)
@@ -77,11 +78,12 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
 
       <div className={s.filterBLock}>
         <input className={s.searchInput} type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter username" />
+        {isAuth && 
         <select onChange={handleFriend} className={s.selectUsers} name="users">
           <option value="null">All</option>
           <option value="true">Followed</option>
           <option value="false">Unfollowed</option>
-        </select>
+        </select>}
       </div>
       {isLoading && <Loader />}
       {error && <ErrorBlock message={error.error || "Error"} />}
