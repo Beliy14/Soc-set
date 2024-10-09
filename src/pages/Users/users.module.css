@@ -79,35 +79,6 @@
   text-align: right;
 }
 
-.btn {
-  background-color: #5aaaff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px 6px;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: 0.1s ease;
-}
-
-.btn:hover {
-  background-color: #4184cc;
-}
-
-.btnUnFollow {
-  background-color: #a5b6c9;
-  color: #343b41;
-  border: none;
-  padding: 10px 20px 6px;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: 0.1s ease;
-
-  &:hover {
-    background-color: #7e91a7;
-  }
-}
 .you {
   color: #777777;
 }

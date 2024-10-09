@@ -31,7 +31,7 @@ const Profile = () => {
   return (
     <Redirect>
       {isLoading && <Loader />}
-      <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} />
+      <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
       <MainProfile />
     </Redirect>
   )

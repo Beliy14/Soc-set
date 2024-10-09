@@ -11,11 +11,17 @@
   }
 }
 
+.photoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 20px;
+}
+
 .avatar {
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
-  margin: 20px;
 }
 
 .infoBlock {
@@ -36,4 +42,3 @@
     gap: 4px;
   }
 }
-

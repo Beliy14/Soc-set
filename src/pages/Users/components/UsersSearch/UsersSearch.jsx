@@ -72,6 +72,12 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
     }
   }, [dispatch, usersQuery, debouncedSearchTerm])
 
+  useEffect(() => {
+    return () => {
+      dispatch(setFriendSelect(null))
+    }
+  }, [dispatch])
+
   return (
     <div className={s.block}>
       <h2 className={s.title}>Search users</h2>

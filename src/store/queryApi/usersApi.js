@@ -28,6 +28,12 @@ export const usersApi = createApi({
       },
     }),
 
+    getFollowedUser: builder.query({
+      query: (userId) => ({
+        url: `/follow/${userId}`,
+      }),
+    }),
+
     followUser: builder.mutation({
       query: (userId) => ({
         url: `/follow/${userId}`,
@@ -44,4 +50,4 @@ export const usersApi = createApi({
   }),
 })
 
-export const { useGetUsersQuery, useFollowUserMutation, useUnFollowUserMutation } = usersApi
+export const { useGetUsersQuery, useFollowUserMutation, useUnFollowUserMutation, useGetFollowedUserQuery } = usersApi

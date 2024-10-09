@@ -1,0 +1,61 @@
+.followingButton {
+  background-color: #5aaaff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px 6px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.1s ease;
+
+  &:hover {
+    background-color: #4184cc;
+  }
+}
+
+.unfollowingButton {
+  background-color: #a5b6c9;
+  color: #343b41;
+  border: none;
+  padding: 10px 20px 6px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.1s ease;
+
+  &:hover {
+    background-color: #7e91a7;
+  }
+}
+
+.followingButtonInProfile {
+  background-color: #677481;
+  color: #fff;
+  border: none;
+  padding: 5px 10px 3px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.1s ease;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: #4f5a63;
+  }
+}
+
+.unfollowingButtonInProfile {
+  background-color: #a5b6c9;
+  color: #343b41;
+  border: none;
+  padding: 5px 10px 3px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.1s ease;
+  margin-top: 6px;
+
+  &:hover {
+    background-color: #7e91a7;
+  }
+}

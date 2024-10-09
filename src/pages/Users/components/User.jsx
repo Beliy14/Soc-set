@@ -1,41 +1,15 @@
 import React from "react"
 import s from "../users.module.css"
 import { Link } from "react-router-dom"
-import { setIsFollowingProgress, toggleFollowUser } from "../../../store/slices/usersSlice"
-import { useFollowUserMutation, useUnFollowUserMutation } from "../../../store/queryApi/usersApi"
 import { setUserProfile } from "../../../store/slices/profileSlice"
 import { useDispatch, useSelector } from "react-redux"
+import FollowingButton from "../../../components/FollowingButton/FollowingButton"
 
 const User = React.memo(() => {
   const { users, isFollowingProgress } = useSelector((state) => state.users)
   const { isAuth, id } = useSelector((state) => state.auth)
 
-  const [followUser] = useFollowUserMutation()
-  const [unFollowUser] = useUnFollowUserMutation()
-
   const dispatch = useDispatch()
-
-  const handleFollow = async (ev, userId, followed) => {
-    ev.preventDefault()
-    ev.stopPropagation()
-
-    dispatch(setIsFollowingProgress({ isFetching: true, userId }))
-    try {
-      if (!followed) {
-        const res = await followUser(userId)
-        if (res.data.resultCode === 0) {
-          dispatch(toggleFollowUser(userId))
-        }
-      } else {
-        const res = await unFollowUser(userId)
-        if (res.data.resultCode === 0) {
-          dispatch(toggleFollowUser(userId))
-        }
-      }
-    } finally {
-      dispatch(setIsFollowingProgress({ isFetching: false, userId }))
-    }
-  }
 
   const onUserDate = (id) => {
     dispatch(setUserProfile(id))
@@ -55,9 +29,7 @@ const User = React.memo(() => {
       {isAuth && (
         <div className={s.followContainer}>
           {isAuth && id !== user.id ? (
-            <button disabled={isFollowingProgress.includes(user.id)} onClick={(ev) => handleFollow(ev, user.id, user.followed)} className={!user.followed ? s.btn : s.btnUnFollow}>
-              {!user.followed ? "Follow" : "Unfollow"}
-            </button>
+            <FollowingButton isFollowingProgress={isFollowingProgress} userId={user.id} userFollowed={user.followed} inProfile={false} />
           ) : (
             <p className={s.you}>You</p>
           )}

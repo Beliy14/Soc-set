@@ -33,10 +33,7 @@ const Header = () => {
   return (
     <>
       <Link className="link" to="/">
-        <div className={s.container}>
           <img className={s.logo} src={logo} alt="logo" />
-          <span className={s.span}>online</span>
-        </div>
       </Link>
 
       <div className={s.loginBlock}>

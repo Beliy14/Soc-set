@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import postReducer from "./slices/postSlice";
 import usersReducer from "./slices/usersSlice";
-import { usersApi } from "./queryApi/usersApi";
-import { profileApi } from "./queryApi/profileApi";
 import profileReducer from "./slices/profileSlice";
-import { authApi } from "./queryApi/authApi";
 import authReducer from "./slices/authSlice";
+import chatReducer from "./slices/chatSlice";
+import { authApi } from "./queryApi/authApi";
+import { profileApi } from "./queryApi/profileApi";
+import { usersApi } from "./queryApi/usersApi";
 import { securityApi } from "./queryApi/securityApi";
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     posts: postReducer,
     users: usersReducer,
     profile: profileReducer,
+    chat: chatReducer,
     auth: authReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
