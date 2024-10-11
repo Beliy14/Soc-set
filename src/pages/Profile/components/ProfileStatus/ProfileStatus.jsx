@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react"
-import s from "./profileStatus.module.css"
 import { useUpdateProfileStatusMutation, useGetProfileStatusQuery } from "../../../../store/queryApi/profileApi"
+import { useDispatch, useSelector } from "react-redux"
+import s from "./profileStatus.module.css"
+import { setAlertVisible } from "../../../../store/slices/alertSlice"
 
 const ProfileStatus = ({ id }) => {
   const { data: status, refetch } = useGetProfileStatusQuery(id)
   const [updateStatus] = useUpdateProfileStatusMutation()
   const [editMode, setEditMode] = useState(false)
   const [newStatus, setNewStatus] = useState(status)
+  const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (status) {
@@ -18,8 +22,11 @@ const ProfileStatus = ({ id }) => {
     try {
       if (editMode) {
         const res = await updateStatus(newStatus)
-        if (res.data.resultCode === 0) {
+        if (res?.data?.resultCode === 0) {
           refetch()
+        }
+        if (res?.error?.status === 403 && !alertVisible) {
+          dispatch(setAlertVisible(true))
         }
       }
     } catch (err) {
@@ -37,7 +44,9 @@ const ProfileStatus = ({ id }) => {
     <>
       {!editMode ? (
         <div>
-          <span onClick={handleEdit} className={s.status}>{newStatus ?? <span className={s.statusNull}>Status</span>}</span>
+          <span onClick={handleEdit} className={s.status}>
+            {newStatus ?? <span className={s.statusNull}>Status</span>}
+          </span>
         </div>
       ) : (
         <div>

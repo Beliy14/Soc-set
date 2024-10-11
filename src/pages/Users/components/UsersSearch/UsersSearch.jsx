@@ -2,8 +2,6 @@ import React, { useCallback, useEffect, useState } from "react"
 import s from "./usersSearch.module.css"
 import { useGetUsersQuery } from "../../../../store/queryApi/usersApi"
 import { useDispatch, useSelector } from "react-redux"
-import Loader from "../../../../components/Loader/Loader"
-import ErrorBlock from "../../../../components/ErrorBlock/ErrorBlock"
 import { setTotalUsersCount, setUsers, setTerm, setCurrentPage, setFriendSelect } from "../../../../store/slices/usersSlice"
 import useDebounce from "../../../../hooks/useDebounce"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -37,7 +35,7 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
     }
   }, [queryParams.term])
 
-  const { data: usersQuery, isLoading, error, refetch } = useGetUsersQuery({ page: pagePagination, term: debouncedSearchTerm, friend })
+  const { data: usersQuery, refetch } = useGetUsersQuery({ page: pagePagination, term: debouncedSearchTerm, friend })
 
   useEffect(() => {
     navigate(`/users?term=${debouncedSearchTerm}`)
@@ -91,8 +89,6 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
           <option value="false">Unfollowed</option>
         </select>}
       </div>
-      {isLoading && <Loader />}
-      {error && <ErrorBlock message={error.error || "Error"} />}
     </div>
   )
 }

@@ -18,7 +18,7 @@ const authSlice = createSlice({
       state.login = action.payload.login;
       state.isAuth = action.payload.isAuth;
       state.token = action.payload.token;
-    },
+    }
   },
 });
 

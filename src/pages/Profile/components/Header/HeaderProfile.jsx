@@ -26,7 +26,7 @@ const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
 
   return (
     <>
-      {isBackdrop && props?.photos?.large && <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={props?.photos?.large} name={props?.fullName} refetch={refetch} />}
+      {isBackdrop && <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={props?.photos?.large || `https://placehold.co/200x200?text=${props?.fullName}`} name={props?.fullName} refetch={refetch} />}
 
       <header className={s.header} onClick={() => setIsOpenJobBlock(false)}>
         <div className={s.photoBlock}>

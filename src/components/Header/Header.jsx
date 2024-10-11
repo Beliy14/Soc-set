@@ -24,6 +24,7 @@ const Header = () => {
   }, [data, dispatch])
 
   const onLogout = async () => {
+    localStorage.removeItem("apiKey")
     const res = await logOut()
     if (res.data.resultCode === 0) {
       dispatch(setAuthUserData({ id: null, isAuth: false, login: null, email: null, token: null }))

@@ -3,6 +3,7 @@ import postReducer from "./slices/postSlice";
 import usersReducer from "./slices/usersSlice";
 import profileReducer from "./slices/profileSlice";
 import authReducer from "./slices/authSlice";
+import alertReducer from "./slices/alertSlice";
 import chatReducer from "./slices/chatSlice";
 import { authApi } from "./queryApi/authApi";
 import { profileApi } from "./queryApi/profileApi";
@@ -16,6 +17,7 @@ export const store = configureStore({
     profile: profileReducer,
     chat: chatReducer,
     auth: authReducer,
+    alert: alertReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [authApi.reducerPath]: authApi.reducer,

@@ -7,10 +7,13 @@ import ErrorBlock from "../../components/ErrorBlock/ErrorBlock"
 import User from "./components/User"
 import PaginationBlock from "./components/PaginationBlock"
 import UsersSearch from "./components/UsersSearch/UsersSearch"
+import Alert from "../../components/Alert/Alert"
+import { setAlertVisible } from "../../store/slices/alertSlice"
 
 const Users = () => {
   const [pagePagination, setPagePagination] = useState(1);
   const {term, friend} = useSelector((state) => state.users);
+  const alertVisible = useSelector((state) => state.alert.alertVisible)
 
   const dispatch = useDispatch();
 
@@ -21,11 +24,18 @@ const Users = () => {
     dispatch(setTotalUsersCount(usersQuery?.totalCount));
   }, [dispatch, usersQuery, term]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(setAlertVisible(false))
+    }
+  }, [dispatch])
+
   return (
     <div>
       {isLoading && <Loader />}
       {error && <ErrorBlock message={error.error || "Error"} />}
 
+      {alertVisible && <Alert />}
       <UsersSearch pagePagination={pagePagination} setPagePagination={setPagePagination} />
       <PaginationBlock setPagePagination={setPagePagination} />
       <User />

@@ -1,17 +1,20 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { BASE_URL, API_KEY, TOKEN } from "../consts"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "../consts";
 
 export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    prepareHeaders: (headers) => {
-      headers.set("API-KEY", API_KEY)
-      headers.set("Authorization", `Bearer ${TOKEN}`)
-      return headers
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      headers.set("API-KEY", localStorage.getItem("apiKey"));
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
     },
     fetchFn: (input, init) => {
-      return fetch(input, { ...init, credentials: "include" })
+      return fetch(input, { ...init, credentials: "include" });
     },
   }),
   endpoints: (builder) => ({
@@ -37,13 +40,13 @@ export const profileApi = createApi({
 
     updateProfilePhoto: builder.mutation({
       query: (photo) => {
-        const formData = new FormData()
-        formData.append("image", photo)
+        const formData = new FormData();
+        formData.append("image", photo);
         return {
           url: "/profile/photo",
           method: "PUT",
           body: formData,
-        }
+        };
       },
     }),
 
@@ -55,6 +58,6 @@ export const profileApi = createApi({
       }),
     }),
   }),
-})
+});
 
-export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation, useUpdateProfilePhotoMutation, useUpdateProfileInfoMutation } = profileApi
+export const { useGetProfileQuery, useGetProfileStatusQuery, useUpdateProfileStatusMutation, useUpdateProfilePhotoMutation, useUpdateProfileInfoMutation } = profileApi;

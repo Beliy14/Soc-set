@@ -120,6 +120,7 @@ const Chat = () => {
             onChange={(e) => dispatch(changeMessage(e.currentTarget.value))}
             placeholder="Enter a message..."
             aria-label="Enter a message"
+            autoFocus={true}
           />
           <button disabled={readyStatus !== "ready"} onClick={sendMessage}>
             <IconContext.Provider value={{ size: "2em" }}>
@@ -133,3 +134,14 @@ const Chat = () => {
 }
 
 export default Chat
+
+
+
+
+
+
+/* 
+do:
+  если пишу сообщеие я, то листать вниз
+
+*/

@@ -1,15 +1,18 @@
 import React, { useState } from "react"
 import { Field, Form, Formik } from "formik"
 import { useGetProfileQuery, useUpdateProfileInfoMutation } from "../../../../store/queryApi/profileApi"
-import { useSelector } from "react-redux"
-import s from "./profileInfo.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import { setAlertVisible } from "../../../../store/slices/alertSlice"
 import infoSchema from "./infoSchema"
+import s from "./profileInfo.module.css"
 
 const ProfileEditInfo = ({ props, onEdit, refetch }) => {
   const [updateProfileInfo, { isLoading }] = useUpdateProfileInfoMutation()
   const profileId = useSelector((state) => state.profile.profileId)
   const { data } = useGetProfileQuery(profileId)
   const [errorUrl, setErrorUrl] = useState([])
+  const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const dispatch = useDispatch()
 
   const randomSkill = () => {
     const skills = [
@@ -62,11 +65,15 @@ const ProfileEditInfo = ({ props, onEdit, refetch }) => {
         validationSchema={infoSchema}
         onSubmit={async (values) => {
           const res = await updateProfileInfo(values)
-          if (res.data.resultCode === 0) {
+          if (res?.data?.resultCode === 0) {
             refetch()
             onEdit()
-          } else if (res.data.messages[0].includes("Invalid url format")) {
+          }
+          if (res?.data?.messages[0]?.includes("Invalid url format")) {
             setErrorUrl(res.data.messages)
+          }
+          if (res?.error?.status === 403 && !alertVisible) {
+            dispatch(setAlertVisible(true))
           }
         }}
       >
@@ -104,7 +111,7 @@ const ProfileEditInfo = ({ props, onEdit, refetch }) => {
                 </p>
               </div>
             ))}
-            
+
             <div className={s.block}>
               {errorUrl?.map((er) => (
                 <span className={s.errorMessage}>{er}</span>
