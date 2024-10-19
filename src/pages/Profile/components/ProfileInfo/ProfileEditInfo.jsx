@@ -12,6 +12,7 @@ const ProfileEditInfo = ({ props, onEdit, refetch }) => {
   const { data } = useGetProfileQuery(profileId)
   const [errorUrl, setErrorUrl] = useState([])
   const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const language = useSelector((state) => state.language.language)
   const dispatch = useDispatch()
 
   const randomSkill = () => {
@@ -80,26 +81,26 @@ const ProfileEditInfo = ({ props, onEdit, refetch }) => {
         {({ isSubmitting }) => (
           <Form>
             <div className={s.infoBlock}>
-              <b>Name:</b>
+              <b>{language === "en" ? "Name:" : "Имя:"}</b>
               <Field name="fullName">{({ field, meta }) => <input {...field} className={`${s.input} ${meta.touched && meta.error ? s.error : ""}`} type="text" placeholder="Enter your name" />}</Field>
             </div>
             <div className={s.infoBlock}>
-              <b>About Me:</b>
+              <b>{language === "en" ? "About me:" : "О себе:"}</b>
               <Field name="aboutMe">
                 {({ field, meta }) => <input {...field} className={`${s.input} ${meta.touched && meta.error ? s.error : ""}`} type="text" placeholder="Tell us about yourself" />}
               </Field>
             </div>
             <div className={s.infoBlock}>
-              <b>Looking for a job:</b>
+              <b>{language === "en" ? "Looking for a job:" : "Ищу работу:"}</b>
               <Field type="checkbox" name="lookingForAJob" />
             </div>
             <div className={s.infoBlock}>
-              <b>Professional skills:</b>
+              <b>{language === "en" ? "Professional skills:" : "Профессиональные навыки:"}</b>
               <Field name="lookingForAJobDescription">
                 {({ field, meta }) => <input {...field} className={`${s.input} ${meta.touched && meta.error ? s.error : ""}`} type="text" placeholder={`For example, ${randomSkill()}`} />}
               </Field>
             </div>
-            <b>Contacts:</b>
+            <b>{language === "en" ? "Contacts:" : "Контакты:"}</b>
 
             {Object.keys(props?.contacts ?? {}).map((contact) => (
               <div key={contact} className={s.infoBlock}>
@@ -120,7 +121,7 @@ const ProfileEditInfo = ({ props, onEdit, refetch }) => {
 
             <div className={s.centerBlock}>
               <button className={s.editBtn} type="submit" disabled={isSubmitting || isLoading}>
-                {isSubmitting || isLoading ? "Saving..." : "Save"}
+                {isSubmitting || isLoading ? (language === "en" ? "Saving..." : "Сохранение...") : (language === "en" ? "Save" : "Сохранить")}
               </button>
             </div>
           </Form>

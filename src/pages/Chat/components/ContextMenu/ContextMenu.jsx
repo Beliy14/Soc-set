@@ -1,29 +1,45 @@
-import React from "react"
-import s from './contextMenu.module.css'
-import { useDispatch } from "react-redux"
+import React, { useEffect } from "react"
+import s from "./contextMenu.module.css"
+import { useDispatch, useSelector } from "react-redux"
 import { changeMessage } from "../../../../store/slices/chatSlice"
 
 const ContextMenu = ({ pageX, pageY, name, owner, setShowMenu, texteriaRef, message }) => {
+  const language = useSelector((state) => state.language.language)
+
   const stylesContextMenu = () => ({
-    padding: '10px 15px',
-    backgroundColor: '#6e7777',
-    display: 'flex',
+    padding: "10px 15px",
+    backgroundColor: "#6e7777",
+    display: "flex",
     flexDirection: "column",
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 5,
     position: "absolute",
     top: pageY,
     left: pageX,
   })
 
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (e.clientX < pageX - 200 || e.clientX > pageX + 200 || e.clientY < pageY - 200 || e.clientY > pageY + 200) {
+        setShowMenu(false)
+      }
+    }
+
+    document.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+    }
+  }, [pageX, pageY, setShowMenu])
+
   const replyMessage = () => {
-    dispatch(changeMessage(name + ', '))
+    dispatch(changeMessage(name + ", "))
     setShowMenu(false)
     texteriaRef.current.focus()
   }
 
   const copyMessageText = async () => {
-    await navigator.clipboard.writeText(message.trim());
+    await navigator.clipboard.writeText(message.trim())
     setShowMenu(false)
   }
 
@@ -32,8 +48,14 @@ const ContextMenu = ({ pageX, pageY, name, owner, setShowMenu, texteriaRef, mess
   return (
     <div style={stylesContextMenu()}>
       <h6>{name}</h6>
-      {!owner && <button onClick={replyMessage} className={s.btn}>Reply</button>}
-      <button onClick={copyMessageText} className={s.btn}>Copy</button>
+      {!owner && (
+        <button onClick={replyMessage} className={s.btn}>
+          {language === "en" ? "Reply" : "Ответить"}
+        </button>
+      )}
+      <button onClick={copyMessageText} className={s.btn}>
+        {language === "en" ? "Copy" : "Копировать"}
+      </button>
     </div>
   )
 }

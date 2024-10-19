@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import ContextMenu from "./ContextMenu/ContextMenu"
 
-const Message = React.memo(({ message, avatar, name, userId, texteriaRef}) => {
+const Message = ({ message, avatar, name, userId, texteriaRef}) => {
   const dispatch = useDispatch()
   const ownerId = useSelector((state) => state.auth.id)
   const [showMenu, setShowMenu] = useState(false)
@@ -60,6 +60,6 @@ const Message = React.memo(({ message, avatar, name, userId, texteriaRef}) => {
       )}
     </div>
   )
-})
+}
 
 export default Message

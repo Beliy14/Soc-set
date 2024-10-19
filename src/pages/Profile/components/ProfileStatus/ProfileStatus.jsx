@@ -10,6 +10,7 @@ const ProfileStatus = ({ id }) => {
   const [editMode, setEditMode] = useState(false)
   const [newStatus, setNewStatus] = useState(status)
   const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const language = useSelector((state) => state.language.language)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const ProfileStatus = ({ id }) => {
       {!editMode ? (
         <div>
           <span onClick={handleEdit} className={s.status}>
-            {newStatus ?? <span className={s.statusNull}>Status</span>}
+            {newStatus ?? <span className={s.statusNull}>{language === "en" ? "Status" : "Статус"}</span>}
           </span>
         </div>
       ) : (

@@ -1,21 +1,22 @@
-import React from 'react';
-import s from './navbar.module.css';
-import NavbarBtn from './NavbarBtn';
+import React from "react"
+import s from "./navbar.module.css"
+import NavbarBtn from "./NavbarBtn"
+import { useSelector } from "react-redux"
 
 const Navbar = () => {
-    return (
-        <>
-            <div className={s.nav}>
-                <h2 className={s.title}>Menu</h2>
-                <NavbarBtn to="/profile" title="Profile" styleClass={s} />
-                <NavbarBtn to="/chat" title="Chat" styleClass={s} />
-                <NavbarBtn to="/users" title="Users" styleClass={s} />
-                <NavbarBtn to="/news" title="News" styleClass={s} />
-                <NavbarBtn to="/music" title="Music" styleClass={s} />
-            </div>
-            <NavbarBtn to="/settings" title="Settings" styleClass={s} />
-        </>
-    );
-};
+  const language = useSelector((state) => state.language.language)
 
-export default Navbar;
+  return (
+    <>
+      <div className={s.nav}>
+        <h2 className={s.title}>{language === "en" ? "Menu" : "Меню"}</h2>
+        <NavbarBtn to="/profile" title={language === "en" ? "Profile" : "Профиль"} styleClass={s} />
+        <NavbarBtn to="/users" title={language === "en" ? "Users" : "Пользователи"} styleClass={s} />
+        <NavbarBtn to="/chat" title={language === "en" ? "Chat" : "Чат"} styleClass={s} />
+      </div>
+      <NavbarBtn to="/settings" title={language === "en" ? "Settings" : "Наcтройки"} styleClass={s} />
+    </>
+  )
+}
+
+export default Navbar

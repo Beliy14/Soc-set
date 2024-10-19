@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 const UsersSearch = ({ pagePagination, setPagePagination }) => {
   const { term, friend } = useSelector((state) => state.users)
   const { isAuth } = useSelector((state) => state.auth)
+  const language = useSelector((state) => state.language.language)
 
   const [searchTerm, setSearchTerm] = useState(term)
   const debouncedSearchTerm = useDebounce(searchTerm, 200)
@@ -78,16 +79,17 @@ const UsersSearch = ({ pagePagination, setPagePagination }) => {
 
   return (
     <div className={s.block}>
-      <h2 className={s.title}>Search users</h2>
+      <h2 className={s.title}>{language === "en" ? "Search users" : "Поиск пользователей"}</h2>
 
       <div className={s.filterBLock}>
-        <input className={s.searchInput} type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter username" />
-        {isAuth && 
-        <select onChange={handleFriend} className={s.selectUsers} name="users">
-          <option value="null">All</option>
-          <option value="true">Followed</option>
-          <option value="false">Unfollowed</option>
-        </select>}
+        <input className={s.searchInput} type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder={language === "en" ? "Enter username" : "Введите имя пользователя"} />
+        {isAuth && (
+          <select onChange={handleFriend} className={s.selectUsers} name="users">
+            <option value="null">{language === "en" ? "All" : "Все"}</option>
+            <option value="true">{language === "en" ? "Followed" : "Мои подписки"}</option>
+            <option value="false">{language === "en" ? "Unfollowed" : "Без подписок"}</option>
+          </select>
+        )}
       </div>
     </div>
   )

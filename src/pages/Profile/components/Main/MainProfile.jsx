@@ -12,6 +12,7 @@ const MainProfile = () => {
   const postRef = useRef(null)
 
   const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const language = useSelector((state) => state.language.language)
 
   const addPostClick = () => {
     if (postRef.current.value) {
@@ -30,10 +31,10 @@ const MainProfile = () => {
     <div className={s.container}>
       {alertVisible && <Alert />}
 
-      <h2 className={s.title}>Posts</h2>
+      <h2 className={s.title}>{language === "en" ? "Posts" : "Публикации"}</h2>
       <div className={s.inputContainer}>
-        <textarea className={s.inputField} placeholder="Enter the text for the post..." ref={postRef} />
-        <button className={s.button} onClick={addPostClick}>Add post</button>
+        <textarea className={s.inputField} placeholder={language === "en" ? "Enter the text for the post..." : "Введите текст для публикации..."} ref={postRef} />
+        <button className={s.button} onClick={addPostClick}>{language === "en" ? "Add post" : "Добавить публикацию"}</button>
       </div>
       {posts.map((post) => (
         <Post key={post.id} post={post} />

@@ -1,3 +1,7 @@
+.loaderContainer {
+  height: 80vh;
+}
+
 .paginationContainer {
   display: flex;
   justify-content: center;
@@ -67,7 +71,7 @@
 }
 
 .userInfo p {
-  margin: 0 0 5px;
+  margin: 0 10px 5px 0px;
   color: #666;
   text-wrap: wrap;
   word-break: break-word;

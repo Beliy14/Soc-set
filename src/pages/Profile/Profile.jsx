@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { setUserProfile } from "../../store/slices/profileSlice"
 import Redirect from "../../hoc/Redirect"
 import { useLocation, useParams } from "react-router-dom"
+import ErrorBlock from "../../components/ErrorBlock/ErrorBlock"
 
 const Profile = () => {
   const dispatch = useDispatch()
   const profileId = useSelector((state) => state.profile.profileId)
-  const { data, isLoading, refetch } = useGetProfileQuery(profileId)
+  const { data, error, isLoading, refetch } = useGetProfileQuery(profileId)
   const { id } = useSelector((state) => state.auth)
 
   const location = useLocation()
@@ -30,9 +31,11 @@ const Profile = () => {
 
   return (
     <Redirect>
-      {isLoading && <Loader />}
-      <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
-      <MainProfile />
+      {isLoading ? <Loader /> : <>
+        <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
+        <MainProfile />
+      </>}
+      {error && <ErrorBlock message={error.error || "Error"} />}
     </Redirect>
   )
 }

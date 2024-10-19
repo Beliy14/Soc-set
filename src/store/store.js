@@ -5,6 +5,7 @@ import profileReducer from "./slices/profileSlice";
 import authReducer from "./slices/authSlice";
 import alertReducer from "./slices/alertSlice";
 import chatReducer from "./slices/chatSlice";
+import languageReducer from "./slices/languageSlice";
 import { authApi } from "./queryApi/authApi";
 import { profileApi } from "./queryApi/profileApi";
 import { usersApi } from "./queryApi/usersApi";
@@ -18,6 +19,7 @@ export const store = configureStore({
     chat: chatReducer,
     auth: authReducer,
     alert: alertReducer,
+    language: languageReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [authApi.reducerPath]: authApi.reducer,

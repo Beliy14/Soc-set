@@ -9,6 +9,7 @@ import { setAuthUserData } from "../../store/slices/authSlice"
 const Header = () => {
   const { data, refetch } = useAuthMeQuery()
   const { isAuth, login, id } = useSelector((state) => state.auth)
+  const language = useSelector((state) => state.language.language)
 
   const dispatch = useDispatch()
   const [logOut] = useLogOutMutation()
@@ -24,7 +25,6 @@ const Header = () => {
   }, [data, dispatch])
 
   const onLogout = async () => {
-    localStorage.removeItem("apiKey")
     const res = await logOut()
     if (res.data.resultCode === 0) {
       dispatch(setAuthUserData({ id: null, isAuth: false, login: null, email: null, token: null }))
@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <>
       <Link className="link" to="/">
-          <img className={s.logo} src={logo} alt="logo" />
+        <img className={s.logo} src={logo} alt="logo" />
       </Link>
 
       <div className={s.loginBlock}>
@@ -42,12 +42,12 @@ const Header = () => {
           <>
             {login}
             <button className={s.log} onClick={onLogout}>
-              Log out
+              {language === "en" ? "Log out" : "Выйти"}
             </button>
           </>
         ) : (
           <Link to="/login" className={s.log}>
-            Log in
+            {language === "en" ? "Log in" : "Войти"}
           </Link>
         )}
       </div>

@@ -1,0 +1,16 @@
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.numberCode {
+    font-size: 80px;
+    color: #3b3c3d;
+}
+
+.title {
+    font-size: 24px;
+    color: #303031;
+}

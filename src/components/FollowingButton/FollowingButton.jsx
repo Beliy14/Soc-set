@@ -9,6 +9,7 @@ const FollowingButton = ({ isFollowingProgress, userId, userFollowed, inProfile,
   const dispatch = useDispatch()
 
   const alertVisible = useSelector((state) => state.alert.alertVisible)
+  const language = useSelector((state) => state.language.language)
 
   const [followUser] = useFollowUserMutation()
   const [unFollowUser] = useUnFollowUserMutation()
@@ -52,7 +53,7 @@ const FollowingButton = ({ isFollowingProgress, userId, userFollowed, inProfile,
 
   return (
     <button disabled={isFollowingProgress && isFollowingProgress.includes(userId)} onClick={(ev) => handleFollow(ev, userId, userFollowed)} className={styles}>
-      {!userFollowed ? "Follow" : "Unfollow"}
+      {!userFollowed ? language === "en" ? "Follow" : "Подписаться" : language === "en" ? "Unfollow" : "Отписаться"}
     </button>
   )
 }

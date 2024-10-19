@@ -1,35 +1,56 @@
 import React, { useEffect, useState } from "react"
-import s from "./login.module.css"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import loginFormSchema from "./FormValidation/loginFormSchema"
 import { useLogInMutation } from "../../store/queryApi/authApi"
 import { useDispatch, useSelector } from "react-redux"
 import { setAuthUserData } from "../../store/slices/authSlice"
 import { Navigate } from "react-router-dom"
-// import { useGetCaptchaUrlQuery } from "../../store/queryApi/securityApi"
+import s from "./login.module.css"
 
 const Login = () => {
   const dispatch = useDispatch()
 
   const [logIn] = useLogInMutation()
-  // const { data: captcha, refetch: refetchCaptcha } = useGetCaptchaUrlQuery()
   const { isAuth } = useSelector((state) => state.auth)
+  const language = useSelector((state) => state.language.language)
 
   const [redirect, setRedirect] = useState(false)
   const [errorEmailOrPassword, setErrorEmailOrPassword] = useState("")
   const [isCaptcha, setIsCaptcha] = useState(false)
+  const [hasReloaded, setHasReloaded] = useState(false)
 
   useEffect(() => {
     if (isAuth) setRedirect(true)
   }, [isAuth])
+
+  useEffect(() => {
+    if (!isAuth) {
+      localStorage.removeItem("apiKey")
+    }
+  }, [isAuth])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible" && !hasReloaded) {
+        window.location.reload()
+        setHasReloaded(true)
+      }
+    }
+
+    window.addEventListener("visibilitychange", handleVisibilityChange)
+
+    return () => {
+      window.removeEventListener("visibilitychange", handleVisibilityChange)
+    }
+  }, [hasReloaded])
 
   if (redirect) {
     return <Navigate to="/profile" />
   }
 
   return (
-    <div className={s.container}>
-      <h1>Login</h1>
+    <div>
+      <h1 className={s.title}>{language === "en" ? "Login" : "Вход"}</h1>
       <Formik
         initialValues={{ email: "", password: "", rememberMe: false, captcha: "" }}
         validationSchema={loginFormSchema(isCaptcha)}
@@ -42,14 +63,13 @@ const Login = () => {
             setErrorEmailOrPassword(res.data.messages[0])
             if (res.data.resultCode === 10) {
               setIsCaptcha(true)
-              // await refetchCaptcha()
             }
           }
         }}
       >
         {({ isSubmitting }) => {
           return (
-            <Form>
+            <Form className={s.container}>
               <Field className={s.input} type="text" name="email" placeholder="E-mail" />
               <ErrorMessage name="email" component="div" className={s.errorMessage} />
 
@@ -58,7 +78,7 @@ const Login = () => {
 
               <div className={s.block}>
                 <Field className={s.checkbox} type="checkbox" name="rememberMe" />
-                <p>Remember me</p>
+                <p>{language === "en" ? "Remember me" : "Запомнить меня"}</p>
               </div>
 
               {errorEmailOrPassword && (
@@ -66,14 +86,6 @@ const Login = () => {
                   <span className={s.errorMessage}>{errorEmailOrPassword}</span>
                 </div>
               )}
-
-              {/* {isCaptcha && captcha && (
-                <div className={s.blockCol}>
-                  <img className={s.captcha} src={captcha.url} alt="Captcha" />
-                  <Field className={s.inputCaptcha} type="text" name="captcha" placeholder="Enter captcha" />
-                  <ErrorMessage name="captcha" component="div" className={s.errorMessage} />
-                </div>
-              )} */}
 
               {isCaptcha && (
                 <div className={s.blockCol}>
@@ -89,7 +101,7 @@ const Login = () => {
 
               <div className={s.block}>
                 <button type="submit" className={s.button} disabled={isSubmitting}>
-                  Log in
+                  {language === "en" ? "Log in" : "Войти"}
                 </button>
               </div>
             </Form>

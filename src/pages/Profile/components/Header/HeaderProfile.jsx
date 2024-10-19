@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import s from "./headerProfile.module.css"
 import ProfileStatus from "../ProfileStatus/ProfileStatus"
 import { useSelector } from "react-redux"
@@ -13,11 +13,27 @@ import { useGetFollowedUserQuery } from "../../../../store/queryApi/usersApi"
 const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
   const [isBackdrop, setIsBackdrop] = useState(false)
   const [isOpenJobBlock, setIsOpenJobBlock] = useState(false)
+  const infoRef = useRef(null)
 
   const { id } = useSelector((state) => state.auth)
   const { isFollowingProgress } = useSelector((state) => state.users)
+  const language = useSelector((state) => state.language.language)
 
   const { data: userFollowed, refetch: refetchFollowed } = useGetFollowedUserQuery(userId)
+
+  useEffect(() => {
+    const documentClick = (e) => {
+      if (e.target !== infoRef.current) {
+        setIsOpenJobBlock(false)
+      }
+    }
+
+    document.addEventListener("click", documentClick)
+
+    return () => {
+      document.removeEventListener("click", documentClick)
+    }
+  }, [])
 
   const onInfoBlock = (e) => {
     e.stopPropagation()
@@ -26,9 +42,11 @@ const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
 
   return (
     <>
-      {isBackdrop && <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={props?.photos?.large || `https://placehold.co/200x200?text=${props?.fullName}`} name={props?.fullName} refetch={refetch} />}
+      {isBackdrop && (
+        <Backdrop owner={owner} setIsBackdrop={setIsBackdrop} photo={props?.photos?.large || `https://placehold.co/200x200?text=${props?.fullName}`} name={props?.fullName} refetch={refetch} />
+      )}
 
-      <header className={s.header} onClick={() => setIsOpenJobBlock(false)}>
+      <header className={s.header}>
         <div className={s.photoBlock}>
           <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={props?.photos?.large} name={props?.fullName} />
           {isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
@@ -38,18 +56,17 @@ const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
           {owner ? <ProfileStatus id={id} /> : <p>{props?.aboutMe}</p>}
 
           {isOpenJobBlock ? (
-            <ProfileInfo refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
+            <ProfileInfo ref={infoRef} refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
           ) : (
             <div className={s.infoBlock} onClick={onInfoBlock}>
-              <p>Info...</p>
-              <IconContext.Provider value={{ size: "20px", color: "#636363" }}>
+              <p>{language === "en" ? "More..." : "Подробнее..."}</p>
+              <IconContext.Provider value={{ size: "20px", color: "#636363", className: s.arrowMore }}>
                 <MdKeyboardDoubleArrowRight />
               </IconContext.Provider>
             </div>
           )}
 
           {!isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
-
         </section>
       </header>
     </>
