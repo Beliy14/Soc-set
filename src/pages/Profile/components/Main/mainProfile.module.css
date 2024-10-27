@@ -5,10 +5,10 @@
   padding: 0px;
 }
 
-
 .title {
   margin-top: 20px;
 }
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -27,47 +27,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.1rem;
-  resize: vertical;
+  resize: none;
   outline: none;
-  min-height: 35px;
+  height: 58px;
+  min-height: 58px;
+  max-height: 58px;
   background-color: #ffffffcb;
-  scrollbar-width: thin;
-  scrollbar-color: #bebebe #f1f1f1;
-}
-
-.inputField::-webkit-scrollbar {
-  width: 12px;
-  border-radius: 10px;
-}
-
-.inputField::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.inputField::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
-
-.inputField::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.postContainer {
-  width: 100%;
-  max-width: 500px;
-  padding: 10px 10px 24px;
-  margin-bottom: 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  position: relative;
-  word-wrap: break-word;
-}
-
-.postText {
-  font-size: 1.2rem;
-  color: #333;
+  scrollbar-width: none;
 }
 
 .button {
@@ -78,20 +44,35 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.2rem;
+
+  &:hover {
+    background-color: #4d9cf1;
+  }
+
+  &:disabled {
+    background-color: #7faddf;
+    cursor: not-allowed;
+  }
+}
+.postContainer {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 10px 6px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  position: relative;
+  word-wrap: break-word;
+  transition: 0.1s ease-in-out;
+
+  &:hover {
+    padding: 10px 18px 6px 10px;
+  }
 }
 
-.button:hover {
-  background-color: #4d9cf1;
-}
-
-.likeDateContainer {
-  position: absolute;
-  bottom: -2px;
-  right: 2px;
-  user-select: none;
-  display: flex;
-  justify-content: space-between;
-  width: 98%;
+.postTitle {
+  font-size: 1.2rem;
+  color: #333;
 }
 
 .datePost {
@@ -99,16 +80,68 @@
   color: #575757;
 }
 
-.like {
+.dots {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 22px;
+  color: #575757;
   cursor: pointer;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.postContainer:hover .dots {
+  opacity: 1;
+}
+
+.editorBlock {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+
+  & button {
+    padding: 5px 8px 3px;
+    font-size: 16px;
+    text-align: center;
+    color: aliceblue;
+    background-color: #79899b;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.1s ease;
+
+    &:hover {
+      background-color: #8493a3;
+    }
+  }
 }
 
 .paragraph {
-  color: #5f5f5f;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.editTitleInput {
+  width: 100%;
+  padding: 0;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  outline: none;
+  transition: 0.3s ease;
+  color: #46678d;
+}
+
+.noOwnerBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 
-  & a {
-    color: #2f3944;
-    text-decoration: none;
+  & p {
+    font-size: 20px;
+    color: #333;
+    margin: 2px 2px 0 0;
   }
 }

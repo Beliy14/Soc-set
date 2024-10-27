@@ -9,14 +9,10 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     changeMessage: (state, action) => {
-      state.textMessage = action.payload  
+      state.textMessage = action.payload
     },
   },
 })
 
 export const { changeMessage } = chatSlice.actions
 export default chatSlice.reducer
-
-
-
-

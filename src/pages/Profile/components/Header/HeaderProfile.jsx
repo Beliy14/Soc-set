@@ -5,8 +5,6 @@ import { useSelector } from "react-redux"
 import Backdrop from "../Backdrop/Backdrop"
 import ProfilePhoto from "../ProfilePhoto/ProfilePhoto"
 import ProfileInfo from "../ProfileInfo/ProfileInfo"
-import { MdKeyboardDoubleArrowRight } from "react-icons/md"
-import { IconContext } from "react-icons"
 import FollowingButton from "../../../../components/FollowingButton/FollowingButton"
 import { useGetFollowedUserQuery } from "../../../../store/queryApi/usersApi"
 
@@ -51,19 +49,16 @@ const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
           <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={props?.photos?.large} name={props?.fullName} />
           {isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
         </div>
-        <section>
+        <section className={s.section}>
           <h2>{props?.fullName}</h2>
           {owner ? <ProfileStatus id={id} /> : <p>{props?.aboutMe}</p>}
 
           {isOpenJobBlock ? (
             <ProfileInfo ref={infoRef} refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
           ) : (
-            <div className={s.infoBlock} onClick={onInfoBlock}>
-              <p>{language === "en" ? "More..." : "Подробнее..."}</p>
-              <IconContext.Provider value={{ size: "20px", color: "#636363", className: s.arrowMore }}>
-                <MdKeyboardDoubleArrowRight />
-              </IconContext.Provider>
-            </div>
+            <button className={s.moreInfoBtn} onClick={onInfoBlock}>
+              {language === "en" ? "More..." : "Подробнее..."}
+            </button>
           )}
 
           {!isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}

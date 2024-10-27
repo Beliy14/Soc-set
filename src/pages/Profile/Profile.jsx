@@ -33,7 +33,7 @@ const Profile = () => {
     <Redirect>
       {isLoading ? <Loader /> : <>
         <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
-        <MainProfile />
+        <MainProfile owner={id === data?.userId} />
       </>}
       {error && <ErrorBlock message={error.error || "Error"} />}
     </Redirect>

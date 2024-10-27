@@ -10,7 +10,7 @@ import Loader from "../../components/Loader/Loader"
 import ErrorBlock from "../../components/ErrorBlock/ErrorBlock"
 import s from "./chat.module.css"
 
-const Chat = React.memo(() => {
+const Chat = React.memo(({ miniChat }) => {
   const dispatch = useDispatch()
   const { textMessage } = useSelector((state) => state.chat)
   const authId = useSelector((state) => state.auth.id)
@@ -84,6 +84,7 @@ const Chat = React.memo(() => {
     if (!textMessage.trim() || !wsChat) return
     wsChat.send(textMessage.trim())
     dispatch(changeMessage(""))
+    texteriaRef.current.focus()
     setTimeout(() => {
       messagesAnchorRef.current?.scrollIntoView({ behavior: "smooth" })
     }, 100)
@@ -115,7 +116,7 @@ const Chat = React.memo(() => {
 
   return (
     <Redirect>
-      <div className={s.block}>
+      <div className={miniChat ? `${s.block} ${s.miniBlock}` : s.block}>
         {readyStatus === "error" && wsError && (
           <div className={s.errorContainer}>
             <ErrorBlock message={wsError} />

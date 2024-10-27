@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
-import s from "./contextMenu.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { changeMessage } from "../../../../store/slices/chatSlice"
+import s from "./contextMenu.module.css"
 
 const ContextMenu = ({ pageX, pageY, name, owner, setShowMenu, texteriaRef, message }) => {
   const language = useSelector((state) => state.language.language)
@@ -16,6 +16,7 @@ const ContextMenu = ({ pageX, pageY, name, owner, setShowMenu, texteriaRef, mess
     position: "absolute",
     top: pageY,
     left: pageX,
+    zIndex: 200,
   })
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const Navbar = () => {
         <NavbarBtn to="/users" title={language === "en" ? "Users" : "Пользователи"} styleClass={s} />
         <NavbarBtn to="/chat" title={language === "en" ? "Chat" : "Чат"} styleClass={s} />
       </div>
-      <NavbarBtn to="/settings" title={language === "en" ? "Settings" : "Наcтройки"} styleClass={s} />
+      <NavbarBtn to="/settings" title={language === "en" ? "Settings" : "Наcтройки"} styleClass={s} btnToSettings={true} />
     </>
   )
 }

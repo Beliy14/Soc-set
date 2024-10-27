@@ -12,6 +12,10 @@
   border-radius: 0 0 10px 0;
 }
 
+.miniBlock {
+  height: 95%;
+}
+
 .arrowDownContainer {
   position: absolute;
   padding: 14px;
