@@ -65,6 +65,10 @@ const Post = ({ post, postId, refetch, setVisibleWarningPost }) => {
     if (e.key === "Enter") {
       onUpdatePostTitle()
     }
+    if (e.key === 'Escape') {
+      setMode(null)
+      setTitlePost(post.title)
+    }
   }
 
   const dateCorrection = (date) => {
