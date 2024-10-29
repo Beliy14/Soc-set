@@ -33,7 +33,7 @@ function App() {
         </nav>
 
         <main className="main">
-          <Routes>
+          <Routes >
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile/*" element={<Profile />} />
