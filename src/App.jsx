@@ -1,5 +1,4 @@
 import { Route, Routes, useLocation } from "react-router-dom"
-import "./App.css"
 import Profile from "./pages/Profile/Profile"
 import Navbar from "./components/Navbar/Navbar"
 import Header from "./components/Header/Header"
@@ -13,6 +12,7 @@ import { useSelector } from "react-redux"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import { IconContext } from "react-icons"
 import { useState } from "react"
+import "./App.css"
 
 function App() {
   const [isOpenChat, setIsOpenChat] = useState(false)
@@ -48,7 +48,7 @@ function App() {
             <div className={isOpenChat ? "chatBlock" : "chatBlock chatBlockClose"}>
               <div className="headerChatBlock" onClick={() => setIsOpenChat(!isOpenChat)}>
                 <IconContext.Provider value={{ className: "toggleChatBlock" }}>{isOpenChat ? <IoIosArrowDown /> : <IoIosArrowUp />}</IconContext.Provider>
-                <h3 onClick={e => e.stopPropagation()}>{language === "en" ? "Chat" : "Чат"}</h3>
+                <h3 onClick={(e) => e.stopPropagation()}>{language === "en" ? "Chat" : "Чат"}</h3>
               </div>
 
               {isOpenChat && <Chat miniChat={true} />}

@@ -13,19 +13,25 @@
 
 .title {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #333;
+}
+
+.requiredApiKey {
+  color: #b60505;
 }
 
 .description {
   text-align: center;
   margin-bottom: 10px;
+  margin-top: 5px;
+
 }
 
 .input {
   width: 100%;
   padding: 10px 10px 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;

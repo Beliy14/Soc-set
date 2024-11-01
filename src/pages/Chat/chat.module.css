@@ -149,3 +149,11 @@
     word-break: break-word;
   }
 }
+
+.noMessage {
+  font-size: 20px;
+  color: #3a4b79;
+  text-align: center;
+  margin-top: 20px;
+  user-select: none;
+}

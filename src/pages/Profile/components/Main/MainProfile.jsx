@@ -4,9 +4,9 @@ import Post from "../Post/Post"
 import Alert from "../../../../components/Alert/Alert"
 import { setAlertVisible } from "../../../../store/slices/alertSlice"
 import { useCreatePostMutation, useGetPostQuery } from "../../../../store/queryApi/postApi"
-import s from "./mainProfile.module.css"
 import { IconContext } from "react-icons"
 import { TbMoodSad } from "react-icons/tb"
+import s from "./mainProfile.module.css"
 
 const MainProfile = ({ owner }) => {
   const [value, setValue] = useState("")
@@ -21,6 +21,10 @@ const MainProfile = ({ owner }) => {
   const [createPost] = useCreatePostMutation()
 
   const maxPost = posts?.length === 10
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   useEffect(() => {
     return () => {
