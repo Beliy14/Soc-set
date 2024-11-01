@@ -41,6 +41,7 @@
 
 @media (max-height: 399px) {
   .btnToSettings {
+    margin-top: 30px;
     position: static;
   }
 }

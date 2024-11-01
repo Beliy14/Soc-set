@@ -52,10 +52,10 @@
 }
 
 .chatBlock {
-  width: 400px;
-  height: 500px;
+  width: 25rem;
+  height: 30rem;
   background-color: #7b8f9c;
-  position: fixed; 
+  position: fixed;
   bottom: 0px;
   right: 10px;
   border-radius: 10px 10px 0 0;
@@ -65,13 +65,16 @@
   transition: 0.2s ease;
   z-index: 100;
 
-  @media (max-width: 768px) {
+  @media (max-width: 970px) {
+    display: none;
+  }
+
+  @media (max-height: 750px) {
     display: none;
   }
 }
 
 .chatBlockClose {
-  width: 400px;
   height: 25px;
 }
 

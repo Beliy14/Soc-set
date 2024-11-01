@@ -1,9 +1,9 @@
 import React from "react"
-import s from "../users.module.css"
 import { Link } from "react-router-dom"
 import { setUserProfile } from "../../../store/slices/profileSlice"
 import { useDispatch, useSelector } from "react-redux"
 import FollowingButton from "../../../components/FollowingButton/FollowingButton"
+import s from "../users.module.css"
 
 const User = React.memo(() => {
   const { users, isFollowingProgress } = useSelector((state) => state.users)
@@ -16,7 +16,7 @@ const User = React.memo(() => {
     dispatch(setUserProfile(id))
   }
 
-  if (!users?.length) return <h3 className={s.noUsersFound}>No users found</h3>
+  if (!users?.length) return <h3 className={s.noUsersFound}>{language === "en" ? "No users found" : "Пользователи не найдены"}</h3>
   
   return users?.map((user) => (
     <Link to={`/profile/${user.id}`} onClick={() => onUserDate(user.id)} key={user.id} className={`${s.user} link`}>

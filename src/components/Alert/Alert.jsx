@@ -21,15 +21,15 @@ const Alert = () => {
             <Link className={s.link} to="/settings">
               Settings
             </Link>{" "}
-            section and enter your <b>API KEY</b>.
+            section and enter the correct <b>API KEY</b>.
           </>
         ) : (
           <>
-            Если у вас не работают некоторые функции, то перейдите в раздел{" "}
+            Если у вас не работают некоторые функции, перейдите в раздел{" "}
             <Link className={s.link} to="/settings">
               Настройки
             </Link>{" "}
-            и введите свой <b>API-ключ</b>.
+            и введите правильный <b>API-ключ</b>.
           </>
         )}
       </p>

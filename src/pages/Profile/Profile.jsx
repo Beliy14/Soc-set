@@ -8,6 +8,7 @@ import { setUserProfile } from "../../store/slices/profileSlice"
 import Redirect from "../../hoc/Redirect"
 import { useLocation, useParams } from "react-router-dom"
 import ErrorBlock from "../../components/ErrorBlock/ErrorBlock"
+import RedirectToSettings from "../../hoc/RedirectToSettings"
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -31,11 +32,13 @@ const Profile = () => {
 
   return (
     <Redirect>
-      {isLoading ? <Loader /> : <>
-        <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
-        <MainProfile owner={id === data?.userId} />
-      </>}
-      {error && <ErrorBlock message={error.error || "Error"} />}
+      <RedirectToSettings>
+        {isLoading ? <Loader /> : <>
+          <HeaderProfile props={data} refetch={refetch} owner={id === data?.userId} userId={data?.userId} />
+          <MainProfile owner={id === data?.userId} />
+        </>}
+        {error && <ErrorBlock message={error.error || "Error"} />}
+      </RedirectToSettings>
     </Redirect>
   )
 }

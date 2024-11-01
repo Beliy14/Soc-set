@@ -9,7 +9,8 @@ import PaginationBlock from "./components/PaginationBlock"
 import UsersSearch from "./components/UsersSearch/UsersSearch"
 import Alert from "../../components/Alert/Alert"
 import { setAlertVisible } from "../../store/slices/alertSlice"
-import s from './users.module.css'
+import s from "./users.module.css"
+import RedirectToSettings from "../../hoc/RedirectToSettings"
 
 const Users = () => {
   const [pagePagination, setPagePagination] = useState(1)
@@ -32,21 +33,23 @@ const Users = () => {
   }, [dispatch])
 
   return (
-    <div>
-      {error && <ErrorBlock message={error.error || "Error"} />}
-      {isLoading ? (
-        <div className={s.loaderContainer}>
-          <Loader />
-        </div>
-      ) : (
-        <>
-          {alertVisible && <Alert />}
-          <UsersSearch pagePagination={pagePagination} setPagePagination={setPagePagination} />
-          <PaginationBlock setPagePagination={setPagePagination} />
-          <User />
-        </>
-      )}
-    </div>
+    <RedirectToSettings>
+      <div>
+        {error && <ErrorBlock message={error.error || "Error"} />}
+        {isLoading ? (
+          <div className={s.loaderContainer}>
+            <Loader />
+          </div>
+        ) : (
+          <>
+            {alertVisible && <Alert />}
+            <UsersSearch pagePagination={pagePagination} setPagePagination={setPagePagination} />
+            <PaginationBlock setPagePagination={setPagePagination} />
+            <User />
+          </>
+        )}
+      </div>
+    </RedirectToSettings>
   )
 }
 

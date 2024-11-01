@@ -130,6 +130,7 @@ const Chat = React.memo(({ miniChat }) => {
               {messages.map((m, index) => (
                 <Message key={index} message={m.message} avatar={m?.photo} name={m.userName} userId={m.userId} texteriaRef={texteriaRef} />
               ))}
+              {!messages.length && <p className={s.noMessage}>{language === "en" ? "The chat is empty..." : "Сообщения отсутствуют..."}</p>}
               <div ref={messagesAnchorRef} />
             </div>
 
