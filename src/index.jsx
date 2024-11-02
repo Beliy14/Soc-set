@@ -7,7 +7,7 @@ import { store } from "./store/store"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-  <HashRouter basename="/Beliy14/Soc-set">
+  <HashRouter>
     <Provider store={store}>
       <App />
     </Provider>
