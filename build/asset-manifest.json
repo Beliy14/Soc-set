@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Soc-set/static/css/main.f5a46aa7.css",
+    "main.js": "/Soc-set/static/js/main.db758118.js",
+    "static/media/logo.svg": "/Soc-set/static/media/logo.2b551c2d8ee8ba44c4a222eba6bc9800.svg",
+    "index.html": "/Soc-set/index.html",
+    "main.f5a46aa7.css.map": "/Soc-set/static/css/main.f5a46aa7.css.map",
+    "main.db758118.js.map": "/Soc-set/static/js/main.db758118.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5a46aa7.css",
+    "static/js/main.db758118.js"
+  ]
+}
