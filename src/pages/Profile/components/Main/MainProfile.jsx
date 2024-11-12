@@ -78,7 +78,7 @@ const MainProfile = ({ owner }) => {
       ) : (
         <div className={s.noOwnerBlock}>
           <p>{language === "en" ? "Unfortunately, other users' posts are not available" : "К сожалению, публикации других пользователей недоступны"}</p>
-          <IconContext.Provider value={{ size: "25px", color: "#333" }}>
+          <IconContext.Provider value={{ className: s.sadEmoji }}>
             <TbMoodSad />
           </IconContext.Provider>
         </div>

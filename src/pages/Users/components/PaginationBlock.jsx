@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import s from "../users.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentPage } from "../../../store/slices/usersSlice"
 import { useLocation } from "react-router-dom"
+import s from "../users.module.css"
 
 const PaginationBlock = React.memo(({ setPagePagination }) => {
   const { currentPage, totalUsersCount } = useSelector((state) => state.users)

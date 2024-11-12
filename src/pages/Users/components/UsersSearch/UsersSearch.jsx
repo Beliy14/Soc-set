@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react"
-import s from "./usersSearch.module.css"
 import { useGetUsersQuery } from "../../../../store/queryApi/usersApi"
 import { useDispatch, useSelector } from "react-redux"
 import { setTotalUsersCount, setUsers, setTerm, setCurrentPage, setFriendSelect } from "../../../../store/slices/usersSlice"
 import useDebounce from "../../../../hooks/useDebounce"
 import { useLocation, useNavigate } from "react-router-dom"
+import s from "./usersSearch.module.css"
 
 const UsersSearch = ({ pagePagination, setPagePagination }) => {
   const { term, friend } = useSelector((state) => state.users)

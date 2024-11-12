@@ -1,7 +1,7 @@
 import React from "react"
-import s from "./navbar.module.css"
 import NavbarBtn from "./NavbarBtn"
 import { useSelector } from "react-redux"
+import s from "./navbar.module.css"
 
 const Navbar = () => {
   const language = useSelector((state) => state.language.language)

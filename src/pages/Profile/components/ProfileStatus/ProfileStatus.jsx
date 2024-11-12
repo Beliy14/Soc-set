@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useUpdateProfileStatusMutation, useGetProfileStatusQuery } from "../../../../store/queryApi/profileApi"
 import { useDispatch, useSelector } from "react-redux"
-import s from "./profileStatus.module.css"
 import { setAlertVisible } from "../../../../store/slices/alertSlice"
+import s from "./profileStatus.module.css"
 
 const ProfileStatus = ({ id }) => {
   const { data: status, refetch } = useGetProfileStatusQuery(id)
@@ -44,11 +44,9 @@ const ProfileStatus = ({ id }) => {
   return (
     <>
       {!editMode ? (
-        <div>
-          <span onClick={handleEdit} className={s.status}>
-            {newStatus ?? <span className={s.statusNull}>{language === "en" ? "Status" : "Статус"}</span>}
-          </span>
-        </div>
+        <span onClick={handleEdit} className={s.status}>
+          {newStatus ?? <span className={s.statusNull}>{language === "en" ? "Status" : "Статус"}</span>}
+        </span>
       ) : (
         <div>
           <input autoFocus={true} onBlur={handleEdit} onChange={onStatusChange} type="text" value={newStatus} className={s.statusInput} />

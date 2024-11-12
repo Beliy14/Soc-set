@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
-import s from "../Main/mainProfile.module.css"
 import { PiDotsThreeCircleVertical } from "react-icons/pi"
 import { IoChevronBackCircleOutline } from "react-icons/io5"
 import { IconContext } from "react-icons"
 import { useDispatch, useSelector } from "react-redux"
 import { useDeletePostMutation, useUpdatePostTitleMutation } from "../../../../store/queryApi/postApi"
 import { setAlertVisible } from "../../../../store/slices/alertSlice"
+import s from "../Main/mainProfile.module.css"
 
 const Post = ({ post, postId, refetch, setVisibleWarningPost }) => {
   const [mode, setMode] = useState(null)

@@ -7,6 +7,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   max-width: 320px;
+  width: 90%;
   margin: 20px auto;
   background-color: #f9f9f9;
 }
@@ -19,6 +20,7 @@
 
 .requiredApiKey {
   color: #b60505;
+  text-align: center;
 }
 
 .description {
@@ -68,7 +70,6 @@
 }
 
 .buttonSave {
-  width: 40%;
   padding: 10px 10px 8px;
   background-color: #516479;
   color: white;

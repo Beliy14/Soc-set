@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import s from "./headerProfile.module.css"
 import ProfileStatus from "../ProfileStatus/ProfileStatus"
 import { useSelector } from "react-redux"
 import Backdrop from "../Backdrop/Backdrop"
@@ -7,6 +6,7 @@ import ProfilePhoto from "../ProfilePhoto/ProfilePhoto"
 import ProfileInfo from "../ProfileInfo/ProfileInfo"
 import FollowingButton from "../../../../components/FollowingButton/FollowingButton"
 import { useGetFollowedUserQuery } from "../../../../store/queryApi/usersApi"
+import s from "./headerProfile.module.css"
 
 const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
   const [isBackdrop, setIsBackdrop] = useState(false)
@@ -45,24 +45,34 @@ const HeaderProfile = React.memo(({ props, refetch, owner, userId }) => {
       )}
 
       <header className={s.header}>
-        <div className={s.photoBlock}>
-          <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={props?.photos?.large} name={props?.fullName} />
-          {isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
+        <div className={s.subHeader}>
+          <div className={s.photoBlock}>
+            <ProfilePhoto setIsBackdrop={setIsBackdrop} avatar={props?.photos?.large} name={props?.fullName} />
+            {isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
+          </div>
+          <section className={s.section}>
+            <h2>{props?.fullName}</h2>
+            {owner ? <ProfileStatus id={id} /> : <p>{props?.aboutMe}</p>}
+
+            {isOpenJobBlock ? (
+              <div className={s.infoBigWidth}>
+                <ProfileInfo ref={infoRef} refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
+              </div>
+            ) : (
+              <button className={s.moreInfoBtn} onClick={onInfoBlock}>
+                {language === "en" ? "More..." : "Подробнее..."}
+              </button>
+            )}
+
+            {!isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
+          </section>
         </div>
-        <section className={s.section}>
-          <h2>{props?.fullName}</h2>
-          {owner ? <ProfileStatus id={id} /> : <p>{props?.aboutMe}</p>}
 
-          {isOpenJobBlock ? (
+        {isOpenJobBlock && (
+          <div className={s.infoSmallWidth}>
             <ProfileInfo ref={infoRef} refetch={refetch} onInfoBlock={onInfoBlock} props={props} owner={owner} />
-          ) : (
-            <button className={s.moreInfoBtn} onClick={onInfoBlock}>
-              {language === "en" ? "More..." : "Подробнее..."}
-            </button>
-          )}
-
-          {!isOpenJobBlock && !owner && <FollowingButton isFollowingProgress={isFollowingProgress} userId={userId} userFollowed={userFollowed} inProfile={true} refetchFollowed={refetchFollowed} />}
-        </section>
+          </div>
+        )}
       </header>
     </>
   )

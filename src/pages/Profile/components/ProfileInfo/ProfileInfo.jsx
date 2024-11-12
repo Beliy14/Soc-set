@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import s from "./profileInfo.module.css"
 import { useLocation } from "react-router-dom"
 import ProfileStaticInfo from "./ProfileStaticInfo"
 import ProfileEditInfo from "./ProfileEditInfo"
+import s from "./profileInfo.module.css"
 
 const ProfileInfo = ({ onInfoBlock, props, owner, refetch }) => {
   const [editMode, setEditMode] = useState(false)

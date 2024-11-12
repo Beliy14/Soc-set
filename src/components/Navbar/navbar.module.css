@@ -10,13 +10,14 @@
 .title {
   font-size: 30px;
   border-bottom: 1px solid #85a1c9;
-  width: 100%;
+  width: 90%;
   text-align: center;
   color: #2b3646;
 }
 
 .link {
   padding: 10px 15px 7px;
+  margin: 0 5px;
   text-decoration: none;
   color: #333;
   background-color: #f0f0f0;

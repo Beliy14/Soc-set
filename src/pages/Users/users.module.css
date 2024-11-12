@@ -4,13 +4,19 @@
 
 .paginationContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin: 20px 0;
+
+  @media (max-width: 450px) {
+    margin: -15px 0;
+  }
 }
 
 .pagination {
-  padding: 8px 12px;
-  margin: 0 4px;
+  padding: 8px 12px 7px;
+  margin: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
@@ -33,7 +39,7 @@
 .user {
   border: 1px solid #ccc;
   padding: 20px;
-  margin: 30px 200px;
+  margin: 30px auto;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -41,6 +47,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width: 90%;
+
+  @media (min-width: 900px) {
+    width: 60%;
+  }
 }
 
 .user:hover {
@@ -68,6 +79,7 @@
   margin: 0 0 5px;
   font-size: 1.5em;
   color: #333;
+  word-break: break-all;
 }
 
 .userInfo p {
@@ -92,4 +104,38 @@
   color: #4d5b83;
   text-align: center;
   margin-top: -20px;
+
+  @media (max-width: 450px) {
+    margin-top: -30px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .usersBlock {
+    margin-top: 40px;
+  }
+
+  .user {
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .photo {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+  }
+
+  .userInfo h2 {
+    margin: 0 0 2px;
+    font-size: 1.3em;
+  }
+
+  .pagination {
+    margin: 3px;
+  }
+
+  .noUsersFound {
+    margin-top: -40px;
+  }
 }

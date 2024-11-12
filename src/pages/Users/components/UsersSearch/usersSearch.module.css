@@ -14,10 +14,7 @@
 }
 
 .filterBLock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+  text-align: center;
 }
 
 .searchInput {
@@ -29,6 +26,7 @@
   outline: none;
   transition: 0.2s ease;
   text-align: center;
+  margin: 2px;
 }
 
 .searchInput:focus {
@@ -45,11 +43,12 @@
   background-color: #fff;
   color: #333;
   cursor: pointer;
+  margin: 2px;
   transition: 0.2s ease;
 
- &:focus {
-  box-shadow: 0 0 1px 1px #ccc;
-}
+  &:focus {
+    box-shadow: 0 0 1px 1px #ccc;
+  }
 }
 
 .selectUsers option {

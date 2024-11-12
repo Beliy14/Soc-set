@@ -1,16 +1,17 @@
 import React, { useEffect } from "react"
-import s from "./header.module.css"
 import logo from "../../assets/logo.svg"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useAuthMeQuery, useLogOutMutation } from "../../store/queryApi/authApi"
 import { useDispatch, useSelector } from "react-redux"
 import { setAuthUserData } from "../../store/slices/authSlice"
+import s from "./header.module.css"
 
 const Header = () => {
   const { data, refetch } = useAuthMeQuery()
   const { isAuth, login, id } = useSelector((state) => state.auth)
   const language = useSelector((state) => state.language.language)
 
+  const location = useLocation()
   const dispatch = useDispatch()
   const [logOut] = useLogOutMutation()
 
@@ -40,15 +41,17 @@ const Header = () => {
       <div className={s.loginBlock}>
         {isAuth && data?.resultCode === 0 ? (
           <>
-            {login}
+            <span>{login}</span>
             <button className={s.log} onClick={onLogout}>
               {language === "en" ? "Log out" : "Выйти"}
             </button>
           </>
         ) : (
-          <Link to="/login" className={s.log}>
-            {language === "en" ? "Log in" : "Войти"}
-          </Link>
+          location.pathname !== "/login" && (
+            <Link to="/login" className={s.log}>
+              {language === "en" ? "Log in" : "Войти"}
+            </Link>
+          )
         )}
       </div>
     </>

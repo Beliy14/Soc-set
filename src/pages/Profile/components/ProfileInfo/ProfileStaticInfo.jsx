@@ -1,6 +1,6 @@
 import React from "react"
-import s from "./profileInfo.module.css"
 import { useSelector } from "react-redux"
+import s from "./profileInfo.module.css"
 
 const ProfileStaticInfo = ({ props, onEdit, owner }) => {
   const language = useSelector((state) => state.language.language)

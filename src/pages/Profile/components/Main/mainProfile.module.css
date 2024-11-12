@@ -54,6 +54,7 @@
     cursor: not-allowed;
   }
 }
+
 .postContainer {
   width: 90%;
   max-width: 500px;
@@ -67,6 +68,18 @@
 
   &:hover {
     padding: 10px 18px 6px 10px;
+  }
+
+  @media (max-width: 700px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 300px) {
+    max-width: 200px;
   }
 }
 
@@ -99,6 +112,7 @@
   display: flex;
   justify-content: center;
   gap: 4px;
+  margin-top: 4px;
 
   & button {
     padding: 5px 8px 3px;
@@ -123,7 +137,7 @@
 }
 
 .editTitleInput {
-  width: 100%;
+  width: 95%;
   padding: 0;
   border: none;
   font-size: 1.2rem;
@@ -135,6 +149,7 @@
 
 .noOwnerBlock {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
@@ -142,6 +157,11 @@
   & p {
     font-size: 20px;
     color: #333;
-    margin: 2px 2px 0 0;
+    text-align: center;
   }
+}
+
+.sadEmoji {
+  font-size: 40px;
+  color: #464646;
 }

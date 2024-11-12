@@ -90,11 +90,11 @@ const Login = () => {
               {isCaptcha && (
                 <div className={s.blockCol}>
                   <p className={s.capthaMessage}>
-                    If you can't log in, go to the website{" "}
+                    {language === "en" ? "If you can't log in, go to the website" : "Если вы не можете войти в систему, перейдите на веб-сайт"}{" "}
                     <a target="_blank" rel="noreferrer" href="https://social-network.samuraijs.com/login">
                       social-network.samuraijs.com
                     </a>{" "}
-                    and enter from there. Refresh the page after logging in.
+                    {language === "en" ? "and enter from there. Refresh the page after logging in." : "и войдите оттуда. Обновите страницу после входа в систему."}
                   </p>
                 </div>
               )}

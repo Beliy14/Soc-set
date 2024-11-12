@@ -9,8 +9,8 @@ import PaginationBlock from "./components/PaginationBlock"
 import UsersSearch from "./components/UsersSearch/UsersSearch"
 import Alert from "../../components/Alert/Alert"
 import { setAlertVisible } from "../../store/slices/alertSlice"
-import s from "./users.module.css"
 import RedirectToSettings from "../../hoc/RedirectToSettings"
+import s from "./users.module.css"
 
 const Users = () => {
   const [pagePagination, setPagePagination] = useState(1)
@@ -45,7 +45,9 @@ const Users = () => {
             {alertVisible && <Alert />}
             <UsersSearch pagePagination={pagePagination} setPagePagination={setPagePagination} />
             <PaginationBlock setPagePagination={setPagePagination} />
-            <User />
+            <div className={s.usersBlock}>
+              <User />
+            </div>
           </>
         )}
       </div>
