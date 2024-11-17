@@ -62,13 +62,6 @@
   padding: 20px 0;
   justify-content: space-between;
   border-radius: 0 0 0 10px;
-
-  @media (max-width: 450px) {
-    display: none;
-  }
-  @media (min-width: 451px) {
-    display: flex;
-  }
 }
 
 .mini-nav {
@@ -105,13 +98,6 @@
       right: 0;
       z-index: 999;
     }
-  }
-
-  @media (min-width: 451px) {
-    display: none;
-  }
-  @media (max-width: 450px) {
-    display: flex;
   }
 }
 
@@ -196,4 +182,23 @@
   text-decoration: none;
   cursor: default;
   color: rgb(42, 55, 63);
+}
+
+@media (max-width: 450px) {
+  .nav {
+    display: none;
+  }
+
+  .mini-nav {
+    display: flex;
+  }
+}
+
+@media (min-width: 451px) {
+  .nav {
+    display: flex;
+  }
+  .mini-nav {
+    display: none;
+  }
 }
