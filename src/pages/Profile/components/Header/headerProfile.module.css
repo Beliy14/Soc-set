@@ -15,18 +15,6 @@
   align-items: center;
 }
 
-.infoBigWidth {
-  @media (max-width: 650px) {
-    display: none;
-  }
-}
-
-.infoSmallWidth {
-  @media (min-width: 651px) {
-    display: none;
-  }
-}
-
 .photoBlock {
   display: flex;
   flex-direction: column;
@@ -64,5 +52,22 @@
 
   &:hover {
     background-color: #ffffff;
+  }
+}
+
+@media (max-width: 650px) {
+  .infoBigWidth {
+    display: none;
+  }
+  .infoSmallWidth {
+    display: block;
+  }
+}
+@media (min-width: 651px) {
+  .infoBigWidth {
+    display: block;
+  }
+  .infoSmallWidth {
+    display: none;
   }
 }

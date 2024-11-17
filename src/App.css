@@ -66,6 +66,9 @@
   @media (max-width: 450px) {
     display: none;
   }
+  @media (min-width: 451px) {
+    display: flex;
+  }
 }
 
 .mini-nav {
@@ -106,6 +109,9 @@
 
   @media (min-width: 451px) {
     display: none;
+  }
+  @media (max-width: 450px) {
+    display: flex;
   }
 }
 
