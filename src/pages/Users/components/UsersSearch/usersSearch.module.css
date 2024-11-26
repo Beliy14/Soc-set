@@ -19,7 +19,7 @@
 
 .searchInput {
   width: 200px;
-  padding: 8px 10px;
+  padding: 8px 10px 6px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -35,7 +35,7 @@
 
 .selectUsers {
   width: 100px;
-  padding: 8px 10px;
+  padding: 8px 10px 6px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
